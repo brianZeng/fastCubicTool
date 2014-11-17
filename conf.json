@@ -1,0 +1,32 @@
+{
+  "scenes": [
+    {
+      "name": "展示厅",
+      "res": ["f.jpg", "a.jpg"],
+      "dir": "scene1"
+    },
+    {
+      "name": "大门",
+      "res": ["focus.jpg", "aside.jpg"],
+      "dir": "大门",
+      "A": 1.2,
+      "B": 0.7,
+      "K": 1
+    },
+    {
+      "name": "GAP",
+      "res": ["q1.jpg", "q1.jpg"],
+      "dir": "Gap"
+    }
+  ],
+  "modes": [
+    {
+      "name": "重点照明",
+      "weights": [1, 0.66]
+    }
+  ],
+  "tem": {
+    "min": 3000,
+    "max": 10000
+  }
+}

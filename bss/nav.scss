@@ -1,0 +1,96 @@
+$deepBlue:rgb(30,104,179);
+$skyBlue:rgb(49,155,216);
+$lightGray:#CCC;
+$deepGray:rgb(93,93,93);
+$textColor:white;
+$menuHeight:73px;
+#shadow{
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  padding-top: $menuHeight;
+  position: absolute;
+  background-color: transparent;
+  >div{
+    width: 100%;
+    height: 100%;
+    background: white;
+    >img{
+      margin:0  auto;
+      display: block;
+    }
+  }
+
+}
+menu($height:$menuHeight;$textColor:white;$background:$deepBlue){
+  margin: 0;
+  min-width:900px;
+  text-align:center;
+  padding: 0 5%;
+  background:$background;
+  height: $height;
+  clear: both;
+.expand{
+  overflow: hidden;
+  &:hover{
+    overflow: visible;
+  }
+}
+>menuitem{
+  height: $height;
+  width: 15%;
+  min-width: 100px;
+  display: inline-block;
+  float: left;
+  padding-top: 12px;
+  margin:0px auto;
+}
+>menuitem{
+  >div($imgSize:35px){
+    background-size: $imgSize;
+    display: inline-block;
+    margin: 0;
+    cursor: pointer;
+    width: $imgSize;
+    height:$imgSize;
+  }
+  >div[data-icon=lum]{
+    background-image: url("images/lum.png");
+  }
+  >div[data-icon=pos]{
+    @include $switchBack($bk:url("images/pos.png");$hbk:url("images/posH.png"));
+  }
+  >div[data-icon=mode]{
+    @include $switchBack($bk:url("images/mode.png");$hbk:url("images/modeH.png"));
+  }
+  >div[data-icon=tem]{
+    background-image: url("images/tem.png");
+  }
+  >p{
+    font-size: 1em;
+    margin:2px auto 0;
+    color: $textColor;
+  }
+  >input[type=range]{
+    min-width: 150px;
+    position: relative;
+    top:10%;
+    @include $slider->lib($width:150px;$trackBorder:none;$height:20px;$background:$lightGray;
+    $trackRadius:0;$thumbBorder:4px solid $skyBlue;$trackColor:$skyBlue;$thumbOffset:-3px);
+  }
+}
+}
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  overflow: hidden;
+
+}
+@mixin $switchBack($bk:red;$hbk:yellow){
+  background-image: $bk;
+  &:hover{
+  background-image: $hbk;
+}
+}

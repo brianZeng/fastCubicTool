@@ -1,0 +1,156 @@
+@sheetname lib;
+@mixin
+
+$thumb(
+$color: white;
+$shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.6);
+$height: 20px;
+$border: none;
+$offset: -2px)
+{
+  background: $color;
+  width: $height;
+  height: $height;
+  border: $border;
+  border-radius: 100%;
+  position: relative;
+  cursor: pointer;
+  top: -$height/4+$offset;
+  z-index: 1;
+  box-sizing: border-box;
+&:active {
+  box-shadow: $shadow;
+}
+
+&:hover {
+  box-shadow: $shadow;
+}
+
+}
+@mixin
+
+$track(
+$color: red;
+$border: none;
+$radius: 10px;
+$width: 180px;
+$height: 5px)
+{
+  background: $color;
+  border-radius: $radius;
+  box-sizing: content-box;
+  height: $height;
+  width: 120px;
+  margin: 5px;
+}
+@mixin
+
+$slider(
+$width: 200px;
+$height: 12px;
+$trackBorder: 2px solid white;
+$trackColor: skyblue;
+$trackRadius: $height;
+$trackHeight: 4px;
+$thumbBorder: none;
+$thumbColor: white;
+$background: transparent;
+$border: none;
+$thumbOffset: -2px)
+{
+  -webkit-appearance: none;
+  width: $width;
+  outline: none;
+  border: $border;
+  border-radius: $height;
+  height: $height;
+  background: $background;
+
+&::-ms-track {
+  @include $track($radius:$trackRadius;
+  $color: $trackColor;
+  $border: $trackBorder;
+  $width: $width;
+  $height: $trackHeight);
+}
+
+&::-moz-range-track {
+  @include $track($radius:$trackRadius;
+  $color: $trackColor;
+  $border: $trackBorder;
+  $width: $width;
+  $height: $trackHeight);
+}
+
+&::-webkit-slider-runnable-track {
+  @include $track($radius:$trackRadius;
+  $color: $trackColor;
+  $border: $trackBorder;
+  $width: $width;
+  $height: $trackHeight);
+}
+
+&::-moz-range-thumb {
+  @include $thumb($color:$thumbColor;
+  $height: $height;
+  $border: $thumbBorder;
+  $offset: $thumbOffset);
+}
+
+&::-ms-thumb {
+  @include $thumb($color:$thumbColor;
+  $height: $height;
+  $border: $thumbBorder;
+  $offset: $thumbOffset);
+}
+
+&::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @include $thumb($color:$thumbColor;
+  $height: $height;
+  $border: $thumbBorder;
+  $offset: $thumbOffset);
+}
+
+}
+@mixin
+
+$boxUp(
+$width: 100px;
+$minHeight: 160px;
+$background: gray;
+$ptSize: 20px)
+{
+&::before {
+  top: -$ptSize/2;
+  transform: rotate(-45deg);
+  background: $background;
+  display: inline-block;
+  width: $ptSize;
+  height: $ptSize;
+  position: relative;
+  content: '';
+}
+
+  width: $width;
+  min-height: $minHeight;
+  background: $background;
+}
+@mixin
+
+$ring(
+$size: 10px;
+$borderSize: 3px;
+$innerColor: transparent;
+$outerColor: skyblue)
+{
+  width: $size;
+  height: $size;
+  border-radius: $size;
+  box-sizing: border-box;
+  border: $borderSize solid $outerColor;
+  background: $innerColor;
+}
+
+
+

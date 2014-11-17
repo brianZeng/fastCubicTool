@@ -1,0 +1,33 @@
+.menu($background:$lightGray;$hoverBack:$skyBlue;$textColor:white){
+  @include $boxUp ->lib($width:100%;$background:$background;$minHeight:0);
+  margin-top: 20px;
+  max-height: 400px;
+  min-width: 83px;
+  max-width: 150px;
+  background: $background;
+  >p,>div($itemHeight:23px){
+    background: $background;
+    position: relative;
+    top:-$itemHeight;
+    height: $itemHeight;
+    margin:0 auto;
+    padding-top: 4px;
+    color: $deepGray;
+    &:hover{
+      background: $hoverBack;
+      color: white;
+    }
+  }
+  >div{
+    &:hover::before{
+      background:$hoverBack;
+      border-color: $textColor;
+    }
+    &::before{
+      display: inline-block;
+      content: '';
+      margin-right:5px;
+      @include $ring->lib($innerColor:$lightGray;$outerColor:$deepGray);
+    }
+  }
+}

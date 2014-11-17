@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <script src="js/imgChannel.js"></script>
+     <script src="js/ChangSS.min.js"></script>
+
+  </head>
+  <body>
+  <div id="shadow">
+<div>
+    <img src="images/loading.gif">
+</div>
+
+  </div>
+  <input type="hidden" value="<%= bss%>" id="bss">
+  <input type="hidden" value="<%= cfg%>" id="cfg">
+  <menu>
+      <menuitem class="expand">
+          <div data-icon="pos"></div>
+          <p>位置</p>
+          <div class="menu" id="sceneMenu">
+              <% for(var i=0,sc=scenes[0];sc;sc=scenes[++i]){%>
+              <p data-seq="<%= i%>"><%= sc.name%></p>
+              <%}%>
+          </div>
+      </menuitem>
+      <menuitem class="expand">
+          <div data-icon="mode"></div>
+          <p>模式</p>
+          <div class="menu" id="modeMenu">
+              <% for(var j=0,m=modes[0];m;m=modes[++j]){%>
+              <div data-seq="<%= j%>"><%= m.name%></div>
+              <%}%>
+          </div>
+      </menuitem>
+      <menuitem>
+          <div data-icon="tem"></div>
+          <p>色温</p>
+
+      </menuitem>
+      <menuitem>
+          <input type="range" value="0" step="0.1" max="1" min="0" name="tem">
+      </menuitem>
+      <menuitem>
+          <div data-icon="lum"></div>
+          <p>亮度</p>
+
+      </menuitem>
+      <menuitem>
+          <input type="range" value="1" step="0.05" max="1" min="0" name="lum">
+      </menuitem>
+  </menu>
+  <canvas id="glcvs">
+
+  </canvas>
+
+
+  <script src="js/base.js"></script>
+  <script src="js/BGL.js"></script>
+  <script src="js/bgl.util.js"></script>
+  <script src="js/dom.js"></script>
+  <script src="js/app.js"></script>
+  </body>
+</html>

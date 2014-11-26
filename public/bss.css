@@ -88,15 +88,7 @@ margin:0 auto;
 text-align:center;
 height:36px;
 }
-menu >menuitem >div{
-display:inline-block;
-cursor:pointer;
-margin:0;
-width:35px;
-background-size:35px;
-height:35px;
-}
-menu .drop,menu >menuitem,menu .icon-range{
+menu .drop,menu .icon-range{
 min-width:100px;
 display:inline-block;
 margin:0px auto;
@@ -105,12 +97,12 @@ float:left;
 height:36px;
 }
 menu .icon-range{
-min-width:220px;
+min-width:250px;
 width:25%;
 }
 menu .drop{
 min-width:100px;
-width:15%;
+width:12%;
 }
 *{
 box-sizing:border-box;

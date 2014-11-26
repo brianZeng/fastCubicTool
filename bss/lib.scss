@@ -1,7 +1,5 @@
 @sheetname lib;
-@mixin
-
-$thumb(
+@mixin $thumb(
 $color: white;
 $shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.6);
 $height: 20px;
@@ -113,11 +111,9 @@ $thumbOffset: -2px)
 }
 
 }
-@mixin
-
-$boxUp(
+@mixin $boxUp(
 $width: 100px;
-$minHeight: 160px;
+$minHeight: 100px;
 $background: gray;
 $ptSize: 20px)
 {
@@ -136,9 +132,7 @@ $ptSize: 20px)
   min-height: $minHeight;
   background: $background;
 }
-@mixin
-
-$ring(
+@mixin $ring(
 $size: 10px;
 $borderSize: 3px;
 $innerColor: transparent;

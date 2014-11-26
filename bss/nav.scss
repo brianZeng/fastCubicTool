@@ -3,7 +3,7 @@ $skyBlue:rgb(49,155,216);
 $lightGray:#CCC;
 $deepGray:rgb(93,93,93);
 $textColor:white;
-$menuHeight:73px;
+$menuHeight:36px;
 #shadow{
   z-index: 999;
   width: 100%;
@@ -16,34 +16,43 @@ $menuHeight:73px;
     height: 100%;
     background: white;
     >img{
-      margin:0  auto;
+      margin:0 auto;
+      padding-top:100px;
       display: block;
     }
   }
-
+}
+p{
+  display: inline-block;
+  margin:0 0 0 9px;
+  cursor: pointer;
+  color: $textColor;
+  font: 1.1em "黑体";
 }
 menu($height:$menuHeight;$textColor:white;$background:$deepBlue){
-  margin: 0;
+
   min-width:900px;
   text-align:center;
-  padding: 0 5%;
+  margin: 0 auto;
   background:$background;
   height: $height;
   clear: both;
-.expand{
-  overflow: hidden;
-  &:hover{
-    overflow: visible;
-  }
-}
->menuitem{
+ .drop{
+   min-width: 100px;
+   width: 15%;
+ }
+ .icon-range{
+   min-width: 220px;
+   width: 25%;
+ }
+.drop,>menuitem,.icon-range{
   height: $height;
-  width: 15%;
   min-width: 100px;
   display: inline-block;
   float: left;
-  padding-top: 12px;
+  padding-top: 9px;
   margin:0px auto;
+
 }
 >menuitem{
   >div($imgSize:35px){
@@ -53,30 +62,6 @@ menu($height:$menuHeight;$textColor:white;$background:$deepBlue){
     cursor: pointer;
     width: $imgSize;
     height:$imgSize;
-  }
-  >div[data-icon=lum]{
-    background-image: url("images/lum.png");
-  }
-  >div[data-icon=pos]{
-    @include $switchBack($bk:url("images/pos.png");$hbk:url("images/posH.png"));
-  }
-  >div[data-icon=mode]{
-    @include $switchBack($bk:url("images/mode.png");$hbk:url("images/modeH.png"));
-  }
-  >div[data-icon=tem]{
-    background-image: url("images/tem.png");
-  }
-  >p{
-    font-size: 1em;
-    margin:2px auto 0;
-    color: $textColor;
-  }
-  >input[type=range]{
-    min-width: 150px;
-    position: relative;
-    top:10%;
-    @include $slider->lib($width:150px;$trackBorder:none;$height:20px;$background:$lightGray;
-    $trackRadius:0;$thumbBorder:4px solid $skyBlue;$trackColor:$skyBlue;$thumbOffset:-3px);
   }
 }
 }

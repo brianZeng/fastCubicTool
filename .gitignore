@@ -1,0 +1,4 @@
+node_modules/*
+bowser_components/*
+.idea/*
+.git/*

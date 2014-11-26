@@ -1,0 +1,10 @@
+.dropHeader{
+  height:$menuHeight;
+  >img($size:18px){
+    display: inline-block;
+    height: $size;
+    width: $size;
+    cursor: pointer;
+  }
+
+}

@@ -30,18 +30,11 @@
     var range = e.target;
     app[range.name] = range.value;
   }
-
-  (function () {
-    var style = document.createElement('style');
-    style.innerHTML = ChangeSS($('#bss').value);
-    document.head.appendChild(style);
-  })();
   function toggleShadow(hide) {
     var shadow = $('#shadow');
     if (hide === undefined)hide = !(shadow.style.display == 'none');
     shadow.style.display = hide ? 'block' : 'none';
   }
-
   var cfg;
   app.cfg = cfg = JSON.parse($('#cfg').value);
   app.ui = {

@@ -27,6 +27,9 @@ function fstate(dir,file){
 }
 module.exports={
   readDir:readDir,
+  writeFile:function(filePath,data,opt){
+    return asyncFS.writeFileAsync(path.normalize(filePath),data,opt||'utf8');
+  },
   readResSubDirs:function(){
     var defer=Promise.defer(),dirs=[];
     readDir(opt.resDir).then(function(files){

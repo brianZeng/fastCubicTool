@@ -69,7 +69,7 @@ if (bgl)
       roomBlender.findBinder('uSumIntensity').value = lgNum;
       roomRender.findBinder('uSumIntensity').value = lgNum;
       // camera.restore();
-      // camera.save();
+      //camera.save();
       camera.translate(-at.x, -at.y, -at.z);
     };
     expoter.turnOff = function () {
@@ -96,8 +96,6 @@ if (bgl)
       return geo;
     };
     expoter.changeABK = function (A, B, k) {
-      if (A > 3)
-        console.log('A太大了，我改成了' + (A = 2.7));
       k = k || 1;
       var e = roomBlender.findBinder('uCalParam').value.elements;
       e[0] = A * k;
@@ -234,6 +232,7 @@ if (bgl)
           }
         };
         camera.save();
+        camera.rotate(180,0,1,0);
       }
     };
 

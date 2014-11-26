@@ -27,7 +27,6 @@ if (window.app) {
           var sceneMode=findByName($scope.curScene.modes,mode.name);
           glFactory.setABK.apply(null,sceneMode.ABK);
           switchLoading(true);
-          debugger;
           $scope.$broadcast('dropTitleChange',{selected:mode.name,role:'mode',modeDef:cfgFactory.modes[mode.name]});
           imgFactory.$get(sceneMode.res).then(function(imgs){
             glFactory.imgs=imgs;

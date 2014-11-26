@@ -34,7 +34,11 @@ function normalizeState(name,state){
 
 function readCfg(path){
  return fileReader.readFile(path).then(function(str){
-    var cfg=JSON.parse(str),r={title:cfg.title||"Philips",modes:cfg.modes},defState;
+    var cfg=JSON.parse(str),r={
+      title:cfg.title||"Philips",
+      modes:cfg.modes,
+      baseTem:cfg.baseTem||3000
+    },defState;
    r.states=Object.getOwnPropertyNames(cfg.states).map(function(key){
       return normalizeState(key, cfg.states[key]);
    }).sort(function(a,b){

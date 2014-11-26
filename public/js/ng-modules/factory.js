@@ -34,15 +34,16 @@ if(window.app)
          var domEle=document.domEle = document.documentElement,menu=document.querySelector('body>menu'),
            cvs=document.querySelector('#glcvs'),glPort=bgl.pls(cvs, {maxLG: 6,
            normalLocation: {x: 0,get y(){return menu.clientHeight }, get w(){return domEle.clientWidth},get h(){return domEle.clientHeight - menu.clientHeight}}
-         }),state={weights:[],imgs:[]};
+         }),state={weights:[],imgs:[],baseTem:window.app.cfg.baseTem||3000};
         glPort.onupdate=function(){
           if(state.dirty){
-            var weights=state.weights,imgs=state.imgs,num=Math.min(imgs.length,weights.length),lum=state.lum,tem=state.tem;
+            var weights=state.weights,imgs=state.imgs,num=Math.min(imgs.length,weights.length),lum=state.lum,tem=state.tem,
+              baseTem=state.baseTem;
             glPort.reset(num);
             for(var i= 0;i<num;i++){
               glPort.changeImg(i,imgs[i]);
               glPort.changeIntensity(i,lum*weights[i]);
-              glPort.changeTem(i,tem);
+              glPort.changeTem(i,tem,baseTem);
             }
             state.dirty=false;
           }
@@ -59,6 +60,13 @@ if(window.app)
         return {
           get tem(){
             return state.tem;
+          },
+          set baseTem(v){
+            if(isNaN(v)||state.baseTem==v)return;
+            invalid(state.baseTem=v);
+          },
+          get baseTem(){
+            return state.baseTem;
           },
           set tem(v){
             if(isNaN(v)||state.tem==v)return;

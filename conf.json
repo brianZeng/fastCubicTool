@@ -81,5 +81,6 @@
       "iconSrc":"images/moon.png"
     }
   },
-  "title":"GAP"
+  "title":"GAP",
+  "baseTem":5000
 }

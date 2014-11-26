@@ -11,6 +11,7 @@ if (window.app) {
         $scope.waiting = 0;
         $scope.scenes=cfgFactory.scenes;
         $scope.states=cfgFactory.states;
+
         function switchLoading(wait){
           var evt=wait? 'beginLoading':'endLoading';
           $scope.$broadcast(evt);

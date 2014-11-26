@@ -70,7 +70,7 @@ if (bgl)
       roomRender.findBinder('uSumIntensity').value = lgNum;
       // camera.restore();
       //camera.save();
-      camera.translate(-at.x, -at.y, -at.z);
+      //camera.translate(-at.x, -at.y, -at.z);
     };
     expoter.turnOff = function () {
       roomRender._geometries.forEach(function (g) {

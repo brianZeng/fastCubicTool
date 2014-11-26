@@ -45,7 +45,7 @@ function readCfg(path){
   });
 }
 module.exports=function(req,res,next){
-  readCfg('./conf2.json').then(function(cfg){
+  readCfg('./conf.json').then(function(cfg){
     res.locals.cfgModel=cfg;
     next();
   },function(e){next(e);});

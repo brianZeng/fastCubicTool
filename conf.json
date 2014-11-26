@@ -3,42 +3,74 @@
     "大门有装饰": {
      "白天":{
        "res":["P1_G_D_AS.jpg", "P1_G_D_FT.jpg"],
-       "ABK":[1.9767,4.0,0.147]
+       "ABK":[1.9767,4.0],
+       "default":true
      },
      "晚上":{
        "res":["P1_G_N_AS.jpg", "P1_G_N_FT.jpg"],
-       "ABK":[6.114,3.8985,0.06]
+       "ABK":[6.114,3.8985]
      },
      "dir": "Gap",
-     "defState":"默认"
+     "defState":"70%"
     },
     "大门无装饰": {
       "白天":{
         "res":["P1_NG_D_AS.jpg", "P1_NG_D_FT.jpg"],
-        "ABK":[2.0,4.0,0.147]
+        "ABK":[2.0,4.0],
+        "default":true
       },
       "晚上":{
         "res":["P1_NG_N_AS.jpg", "P1_NG_N_FT.jpg"],
-        "ABK":[5.824,3.891,0.06]
+        "ABK":[5.824,3.891]
       },
       "dir": "Gap",
-      "defState":"默认"
+      "defState":"70%"
     }
   },
   "states":{
-    "全关":{
+    "Off":{
       "weights":[0,0],
       "tem":{
         "min":2500,
         "max":8000,
         "step":200
-      }
+      },
+      "order":1
     },
-    "默认":{
+    "30%":{
+      "weights":[1,1],
+      "defLum":30,
+      "defTem":3000,
+      "order":2
+    },
+    "70%":{
+      "weights":[1,1],
+      "defLum":70,
+      "defTem":3000,
+      "order":3
+    },
+    "温馨":{
+      "weights":[1,1],
+      "defLum":10,
+      "defTem":3000,
+      "order":4
+    },
+    "活力":{
+      "weights":[0.3,1],
+      "defLum":100,
+      "defTem":3000,
+      "order":5
+    },
+    "正式":{
       "weights":[1,1],
       "defLum":100,
+      "defTem":6500,
+      "order":6
+    },
+    "自定义":{
+      "weights":[1,1],
       "mutable":true,
-      "defTem":3000
+      "order":7
     }
   },
   "modes":{

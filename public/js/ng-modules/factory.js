@@ -44,6 +44,7 @@ if(window.app)
               glPort.changeIntensity(i,lum*weights[i]);
               glPort.changeTem(i,tem);
             }
+            state.dirty=false;
           }
         };
         function invalid(){

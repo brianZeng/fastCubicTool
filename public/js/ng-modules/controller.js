@@ -20,14 +20,15 @@ if (window.app) {
           $scope.modes=scene.modes;
           $scope.curScene=scene;
           $scope.chooseState(findByName($scope.states,scene.defState));
-          $scope.chooseMode(scene.modes[0]);
+          $scope.chooseMode(findByName(scene.modes,scene.defMode));
         };
         $scope.chooseMode=function(mode){
           if(!$scope.curScene)return;
           var sceneMode=findByName($scope.curScene.modes,mode.name);
           glFactory.setABK.apply(null,sceneMode.ABK);
           switchLoading(true);
-          $scope.$broadcast('dropTitleChange',{selected:mode.name,role:'mode'});
+          debugger;
+          $scope.$broadcast('dropTitleChange',{selected:mode.name,role:'mode',modeDef:cfgFactory.modes[mode.name]});
           imgFactory.$get(sceneMode.res).then(function(imgs){
             glFactory.imgs=imgs;
             switchLoading(false);
@@ -71,8 +72,11 @@ if (window.app) {
           $scope.showMenu=false;
         };
         $scope.$on('dropTitleChange',function(e,evt){
-           if(evt.role==$scope.role)
-             $scope.selected=evt.selected;
+          var role=$scope.role;
+          if(evt.role==$scope.role){
+            $scope.selected=evt.selected;
+            if(role=='mode')$scope.iconSrc=evt.modeDef.iconSrc;
+          }
         })
       }).
       controller('rangeController',function($scope,glFactory){

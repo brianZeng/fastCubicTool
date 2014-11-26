@@ -12,6 +12,7 @@ function normalizePlace(name,scene,defState){
     if(dir)res=sceneMode.res.map(function(p){return path.join(dir,p)});
     else res=sceneMode.res.slice();
     r.modes.push({name:key,res:res,ABK:sceneMode.ABK});
+    if(sceneMode.default)r.defMode=key;
   });
   return r;
 }
@@ -19,9 +20,10 @@ function normalizeState(name,state){
   var r={
     name:name,
     weights:state.weights||[],
-    defLum:state.defLum||1,
+    defLum:state.defLum||100,
     defTem:state.defTem||3000,
-    mutable:state.mutable
+    mutable:!!state.mutable,
+    order:state.order||0
   };
  var tem=r.tem=state.tem||{};
   tem.min=tem.min||2500;
@@ -35,6 +37,8 @@ function readCfg(path){
     var cfg=JSON.parse(str),r={title:cfg.title||"Philips",modes:cfg.modes},defState;
    r.states=Object.getOwnPropertyNames(cfg.states).map(function(key){
       return normalizeState(key, cfg.states[key]);
+   }).sort(function(a,b){
+     return a.order> b.order;
    });
    if(r.states.length==0) r.states=[normalizeState('error',{})];
    defState= r.states[0].name;

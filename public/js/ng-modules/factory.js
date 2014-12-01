@@ -57,6 +57,7 @@ if(window.app)
           glPort.adjustCanvas(cvs,glPort.expanded);
         });
         window.app.glDebug=glPort.debug;
+        window.app.camera=glPort.camera;
         return {
           get tem(){
             return state.tem;

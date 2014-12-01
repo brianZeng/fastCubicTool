@@ -903,6 +903,7 @@ bgl.animation.SimpleClock.prototype = {
     this.d = this.direction;
     this.t = this.d == 1 ? 0 : 1;
     this._stopped = false;
+    this.value=this.t*this.multiplier+this.offset;
     this.waitUpdate();
     return true;
   },
@@ -937,6 +938,7 @@ bgl.animation.SimpleClock.prototype = {
     this._stopped = false;
     this.d = -this.direction;
     this.t = (this.d == 1 ? 0 : 1);
+    this.value=this.t*this.multiplier+this.offset;
     this.waitUpdate();
     return true;
   },
@@ -2530,7 +2532,7 @@ bgl.model.Camera.prototype = {
   },
   get perspectiveMatrix() {
     if (!this._pMatrix) {
-      var m = bgl.math.Matrix4.setPerspective(this.fovy, this.aspect, this.near, this.far);
+      var m = bgl.math.Matrix4.setPerspective(this._fovy, this.aspect, this.near, this.far);
       this._pMatrix = m;
       return m;
     }

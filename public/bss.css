@@ -15,6 +15,7 @@ width:80%;
 margin:5px auto;
 max-height:400px;
 min-height:0;
+float:left;
 }
 .menu::before{
 transform:rotate(-45deg);
@@ -91,18 +92,21 @@ height:36px;
 menu .drop,menu .icon-range{
 min-width:100px;
 display:inline-block;
+clear:both;
 margin:0px auto;
 padding-top:9px;
-float:left;
 height:36px;
 }
 menu .icon-range{
 min-width:250px;
-width:25%;
+width:15%;
+max-width:350px;
 }
 menu .drop{
-min-width:100px;
-width:12%;
+top:-10px;
+width:10%;
+position:relative;
+max-width:125px;
 }
 *{
 box-sizing:border-box;

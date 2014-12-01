@@ -119,13 +119,14 @@ if (bgl)
           cfg.glClear(true);
         }, 'clean');
         rootRender.controller = (function () {
-          var clock = new bgl.animation.SimpleClock(10, 360, 1, 0, null, true);
+          var clock = new bgl.animation.SimpleClock(40, 1, 1, 0, null, true);
           clock.ontick = function (ov, timeline) {
-            timeline.scene.camera.orient((ov - clock.value));
+            //timeline.scene.camera.orient((ov - clock.value));
+             timeline.scene.camera.rotate(Math.sin(clock.value-ov)*360,0,1,0);
           };
           expoter.autoPlay = function (dur) {
             if (!clock._stopped)return;
-            clock.duration = dur || 20;
+            clock.duration = dur || 40;
             clock.restart();
           };
           expoter.manualPlay = function () {
@@ -210,7 +211,7 @@ if (bgl)
       },
       camera: function (camera) {
         camera.far = 5;
-        camera.fovy = 60;
+        camera.fovy=30;
         camera.move = function (dir) {
           var d = this.to, pos = 0.02, dis;
           switch (dir) {
@@ -313,6 +314,7 @@ if (bgl)
       rootRender.add(config.roomBlender(gl));
       config.eventPool(cfg.eventPool);
       config.camera(scene.camera);
+      expoter.camera=scene.camera;
       expoter.adjustCanvas(canvas, false);
       Object.defineProperty(expoter, 'onupdate', {set: function (f) {
         cfg.on('update', f)

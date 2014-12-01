@@ -98,6 +98,8 @@ if (window.app) {
             }
             else if(role=='lum')
               $scope.value=state.defLum;
+            else if(role=='w0') $scope.value=state.weights[0]*100;
+            else if(role=='w1') $scope.value=state.weights[1]*100;
           });
       });
 

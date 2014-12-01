@@ -86,6 +86,17 @@ if(window.app)
           setABK:function(A,B,K){
             return glPort.changeABK(A,B,K);
           },
+          set w0(v){
+           state.weights[0]=parseFloat(v)/100||0;
+           state.lum=1;
+           invalid();
+         },
+          set w1(v){
+            state.weights[1]=parseFloat(v)/100||0;
+            state.lum=1;
+            invalid();
+          },
+          getWeight:function(i){return state.weights[i]*100},
           setWeights:function(weights){
             return invalid(state.weights=weights.slice());
           },

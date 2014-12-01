@@ -27,6 +27,7 @@ if(window.app){
       replace:true,
       scope:{
         iconSrc:'@iconSrc',
+        title:'@title',
         unit:'@unit',
         value:'@value',
         role:'@role',
@@ -37,7 +38,7 @@ if(window.app){
       controller:'rangeController',
       template:"<div class='icon-range'>" +
         "<img ng-src='{{iconSrc}}'>" +
-        "<p>{{value}}{{unit}}</p>" +
+        "<p>{{title}}{{value}}{{unit}}</p>" +
         "<input type='range' ng-model='value' ng-disabled='!mutable'  ng-change='onchange(value)' min='{{min}}' max='{{max}}' step='{{step}}' ng-class=\"{true:'active',false:'inactive'}[mutable]\">" +
         "</div>"
     }

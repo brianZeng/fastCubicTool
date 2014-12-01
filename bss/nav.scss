@@ -30,7 +30,7 @@ p{
   font: 1.1em "黑体";
 }
 menu($height:$menuHeight;$textColor:white;$background:$deepBlue){
-  min-width:900px;
+  min-width:1200px;
   text-align:center;
   margin: 0 auto;
   background:$background;
@@ -44,7 +44,7 @@ menu($height:$menuHeight;$textColor:white;$background:$deepBlue){
  }
  .icon-range{
    max-width: 350px;
-   min-width: 250px;
+   min-width: 260px;
    width: 15%;
  }
 .drop,.icon-range{

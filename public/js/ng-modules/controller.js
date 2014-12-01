@@ -75,7 +75,7 @@ if (window.app) {
           var role=$scope.role;
           if(evt.role==$scope.role){
             $scope.selected=evt.selected;
-            if(role=='mode')$scope.iconSrc=evt.modeDef.iconSrc;
+            if(role=='mode'&&evt.modeDef)$scope.iconSrc=evt.modeDef.iconSrc;
           }
         })
       }).

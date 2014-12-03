@@ -2449,7 +2449,7 @@ bgl.model.Camera.prototype = {
       _top: this._top.paste()
     }, ss = this._states || [];
     this.allOwnPros(function (value, name) {
-      if (typeof value != "object") s[name] = value;
+      if (typeof value != "object"&&name[0]=='_') s[name] = value;
     });
     ss.push(s);
     this._states = ss;

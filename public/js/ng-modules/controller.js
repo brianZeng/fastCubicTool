@@ -7,12 +7,11 @@ if (window.app) {
       for(var i= 0,obj=arr[0];obj;obj=arr[++i])
        if(obj.name===name)return obj;
     }
-    module.controller('bannerController', function ($scope, imgFactory,cfgFactory,glFactory) {
-        $scope.waiting = 0;
+    module.controller('bannerController', function ($scope,$timeout, imgFactory,cfgFactory,glFactory) {
+        $scope.waiting = 1;
         $scope.scenes=cfgFactory.scenes;
         $scope.states=cfgFactory.states;
-
-        function switchLoading(wait){
+       function switchLoading(wait){
           var evt=wait? 'beginLoading':'endLoading';
           $scope.$broadcast(evt);
           $scope.waiting=wait;
@@ -22,6 +21,7 @@ if (window.app) {
           $scope.curScene=scene;
           $scope.chooseState(findByName($scope.states,scene.defState));
           $scope.chooseMode(findByName(scene.modes,scene.defMode));
+          glFactory.restoreCamera();
         };
         $scope.chooseMode=function(mode){
           if(!$scope.curScene)return;
@@ -31,6 +31,7 @@ if (window.app) {
           $scope.$broadcast('dropTitleChange',{selected:mode.name,role:'mode',modeDef:cfgFactory.modes[mode.name]});
           imgFactory.$get(sceneMode.res).then(function(imgs){
             glFactory.imgs=imgs;
+
             switchLoading(false);
           },function(data){
             alert('加载图片失败');
@@ -56,6 +57,10 @@ if (window.app) {
             case 'state':
               return $scope.chooseState(to)
           }
+        });
+        $timeout(function(){
+          if($scope.scenes[0])
+            $scope.chooseScene($scope.scenes[0]);
         });
     }).
       controller('dropController', function ($scope) {

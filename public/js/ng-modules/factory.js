@@ -96,6 +96,7 @@ if(window.app)
             state.lum=1;
             invalid();
           },
+          restoreCamera:glPort.restoreCamera,
           getWeight:function(i){return state.weights[i]*100},
           setWeights:function(weights){
             return invalid(state.weights=weights.slice());

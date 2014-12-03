@@ -2,20 +2,20 @@
   "scenes": {
     "大门": {
       "白天有装饰":{
-        "res":["P1_G_D_AS.jpg", "P1_G_D_FT.jpg"],
+        "res":["P1_G_D_FT.jpg", "P1_G_D_AS.jpg"],
         "ABK":[1.9767,3.8985],
         "default":true
       },
       "晚上有装饰":{
-        "res":["P1_G_N_AS.jpg", "P1_G_N_FT.jpg"],
+        "res":["P1_G_N_FT.jpg", "P1_G_N_AS.jpg"],
         "ABK":[1.9767,3.8985]
       },
       "白天无装饰":{
-        "res":["P1_NG_D_AS.jpg", "P1_NG_D_FT.jpg"],
+        "res":["P1_NG_D_FT.jpg", "P1_NG_D_AS.jpg"],
         "ABK":[1.9767,3.8985]
       },
       "晚上无装饰":{
-        "res":["P1_NG_N_AS.jpg", "P1_NG_N_FT.jpg"],
+        "res":["P1_NG_N_FT.jpg", "P1_NG_N_AS.jpg"],
         "ABK":[1.9767,3.8985]
       },
      "dir": "Gap",
@@ -50,31 +50,31 @@
       "order":1
     },
     "30%":{
-      "weights":[1,1],
+      "weights":[0.3,0.3],
       "defLum":30,
       "defTem":3000,
       "order":2
     },
     "70%":{
-      "weights":[1,1],
+      "weights":[0.7,0.7],
       "defLum":70,
       "defTem":3000,
       "order":3
     },
     "温馨":{
-      "weights":[1,1],
+      "weights":[0.3,0.3],
       "defLum":10,
       "defTem":3000,
       "order":4
     },
     "活力":{
-      "weights":[0.3,1],
+      "weights":[1,0.3],
       "defLum":100,
-      "defTem":3000,
+      "defTem":4000,
       "order":5
     },
     "正式":{
-      "weights":[1,1],
+      "weights":[0.7,0.7],
       "defLum":100,
       "defTem":6500,
       "order":6

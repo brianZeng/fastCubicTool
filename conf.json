@@ -51,19 +51,19 @@
     },
     "30%":{
       "weights":[0.3,0.3],
-      "defLum":30,
+      "defLum":100,
       "defTem":3000,
       "order":2
     },
     "70%":{
       "weights":[0.7,0.7],
-      "defLum":70,
+      "defLum":100,
       "defTem":3000,
       "order":3
     },
     "温馨":{
       "weights":[0.3,0.3],
-      "defLum":10,
+      "defLum":100,
       "defTem":3000,
       "order":4
     },

@@ -31,7 +31,6 @@ if (window.app) {
           $scope.$broadcast('dropTitleChange',{selected:mode.name,role:'mode',modeDef:cfgFactory.modes[mode.name]});
           imgFactory.$get(sceneMode.res).then(function(imgs){
             glFactory.imgs=imgs;
-
             switchLoading(false);
           },function(data){
             alert('加载图片失败');

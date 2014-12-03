@@ -8,7 +8,7 @@ if (window.app) {
        if(obj.name===name)return obj;
     }
     module.controller('bannerController', function ($scope,$timeout, imgFactory,cfgFactory,glFactory) {
-        $scope.waiting = 1;
+        $scope.waiting = $scope.waitingScene=1;
         $scope.scenes=cfgFactory.scenes;
         $scope.states=cfgFactory.states;
        function switchLoading(wait){
@@ -21,6 +21,7 @@ if (window.app) {
           $scope.curScene=scene;
           $scope.chooseState(findByName($scope.states,scene.defState));
           $scope.chooseMode(findByName(scene.modes,scene.defMode));
+          $scope.waitingScene=1;
           glFactory.restoreCamera();
         };
         $scope.chooseMode=function(mode){
@@ -32,6 +33,7 @@ if (window.app) {
           imgFactory.$get(sceneMode.res).then(function(imgs){
             glFactory.imgs=imgs;
             switchLoading(false);
+            $scope.waitingScene=0;
           },function(data){
             alert('加载图片失败');
             console.log(data);

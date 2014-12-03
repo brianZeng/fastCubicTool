@@ -11,7 +11,7 @@
   <body ng-app="br" ng-controller="bannerController">
 
   <div id="shadow" ng-show="waiting">
-    <div> <img src="images/entry.jpg" class="cover"></div>
+    <div> <img src="images/entry.jpg" class="cover" ng-show="waitingScene"></div>
   </div>
   <input type="hidden" value="<%= JData%>" id="cfg">
   <menu>

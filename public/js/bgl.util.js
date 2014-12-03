@@ -66,9 +66,6 @@ if (bgl)
       camera.restore();
       camera.save();
       expoter.adjustCanvas(null,expoter.expanded);
-     // camera.rotate(180,0,1,0);
-      //camera.save();
-      //camera.translate(-at.x, -at.y, -at.z);
     };
     expoter.reset = function (lgNum) {
       var geos = roomRender._geometries, camera = roomRender.scene.camera, at = camera._at;

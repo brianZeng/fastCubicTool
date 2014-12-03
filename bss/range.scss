@@ -1,0 +1,24 @@
+.icon-range{
+  overflow: hidden;
+  >img,>p,>input{display: inline-block;float: left}
+  >img($size:18px){
+  height: $size;
+  width: $size;
+  cursor: pointer;
+}
+  >p{
+    padding-top: 2px;
+  }
+  >input[type=range]{
+    min-width: 150px;
+    margin:-2px auto auto 15px;
+  }
+}
+.active[type=range]{
+  @include $slider->lib($width:127px;$trackBorder:none;$height:20px;$background:$lightGray;
+  $trackRadius:0;$thumbBorder:4px solid $skyBlue;$trackColor:$skyBlue;$thumbOffset:-3px);
+}
+.inactive[type=range]{
+  @include $slider->lib($width:127px;$trackBorder:none;$height:20px;$background:$lightGray;
+  $trackRadius:0;$thumbBorder:4px solid $deepGray;$trackColor:$deepGray;$thumbOffset:-3px);
+}

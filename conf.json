@@ -3,32 +3,32 @@
     "大门": {
       "白天有装饰":{
         "res":["P1_G_D_FT.jpg", "P1_G_D_AS.jpg"],
-        "ABK":[1.9767,3.8985],
+        "ABK":[2.1,3.8985],
         "default":true
       },
       "晚上有装饰":{
         "res":["P1_G_N_FT.jpg", "P1_G_N_AS.jpg"],
-        "ABK":[1.9767,3.8985]
+        "ABK":[2.1,3.8985]
       },
       "白天无装饰":{
         "res":["P1_NG_D_FT.jpg", "P1_NG_D_AS.jpg"],
-        "ABK":[1.9767,3.8985]
+        "ABK":[2.1,3.8985]
       },
       "晚上无装饰":{
         "res":["P1_NG_N_FT.jpg", "P1_NG_N_AS.jpg"],
-        "ABK":[1.9767,3.8985]
+        "ABK":[2.1,3.8985]
       },
      "dir": "Gap",
      "defState":"70%"
     },"橱窗":{
       "晚上1":{
         "res":["P2_all_off_model.jpg", "P2_all_off_poster.jpg"],
-        "ABK":[4.15,2.14],
+        "ABK":[1.89217801389,4.0],
         "default":true
       },
       "晚上2":{
         "res":["P2_off_model.jpg", "P2_off_poster.jpg"],
-        "ABK":[2.67,4.0]
+        "ABK":[1.89217801389,4.0]
       },
       "白天":{
         "res":["P2_on_model.jpg", "P2_on_poster.jpg"],

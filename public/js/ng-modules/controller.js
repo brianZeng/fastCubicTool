@@ -8,15 +8,17 @@ if (window.app) {
        if(obj.name===name)return obj;
     }
     module.controller('bannerController', function ($scope,$timeout, imgFactory,cfgFactory,glFactory) {
-        $scope.waiting = $scope.waitingScene=1;
+        $scope.waiting = $scope.waitingScene=0;
         $scope.scenes=cfgFactory.scenes;
         $scope.states=cfgFactory.states;
+        $scope.covering=1;
        function switchLoading(wait){
           var evt=wait? 'beginLoading':'endLoading';
           $scope.$broadcast(evt);
           $scope.waiting=wait;
         }
         $scope.chooseScene=function(scene){
+
           $scope.modes=scene.modes;
           $scope.curScene=scene;
           $scope.chooseState(findByName($scope.states,scene.defState));
@@ -33,6 +35,7 @@ if (window.app) {
           imgFactory.$get(sceneMode.res).then(function(imgs){
             glFactory.imgs=imgs;
             switchLoading(false);
+            $scope.covering=0;
             $scope.waitingScene=0;
           },function(data){
             alert('加载图片失败');
@@ -60,8 +63,8 @@ if (window.app) {
           }
         });
         $timeout(function(){
-          if($scope.scenes[0])
-            $scope.chooseScene($scope.scenes[0]);
+         // if($scope.scenes[0])
+         //   $scope.chooseScene($scope.scenes[0]);
         });
     }).
       controller('dropController', function ($scope) {

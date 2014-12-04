@@ -11,7 +11,7 @@
   <body ng-app="br" ng-controller="bannerController">
 
   <div id="shadow" ng-show="waiting">
-    <div> <img src="images/entry.jpg" class="cover" ng-show="waitingScene"></div>
+    <div></div>
   </div>
   <input type="hidden" value="<%= JData%>" id="cfg">
   <menu>
@@ -22,7 +22,13 @@
       <icon-range icon-src="images/light.png" unit="%" value="0" role="w0" min="0" max="100" step="1" title="重点"></icon-range>
       <icon-range icon-src="images/light.png" unit="%" value="0" role="w1" min="0" max="100" step="1" title="周边"></icon-range>
   </menu>
+  <div ng-show="covering">
+      <img src="images/entry_title.jpg" class="cover">
+      <img src="images/entry.jpg" class="cover">
+  </div>
+
   <canvas id="glcvs"></canvas>
+
   <script src="js/angular/angular.js"></script>
   <script src="js/ng-modules/init.js"></script>
   <script src="js/ng-modules/factory.js"></script>

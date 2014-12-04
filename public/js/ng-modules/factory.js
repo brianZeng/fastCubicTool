@@ -102,6 +102,7 @@ if(window.app)
             return invalid(state.weights=weights.slice());
           },
           set visible(v){
+           // debugger;
             glPort.visible=v;
           }
         }

@@ -33,7 +33,6 @@ menu($height:$menuHeight;$textColor:white;$background:$deepBlue){
   clear: both;
  .drop{
    max-width: 125px;
-   width: 10%;
    position: relative;
    top:-10px;
  }
@@ -64,10 +63,4 @@ body{
   &:hover{
   background-image: $hbk;
 }
-}
-.cover{
-  margin:0 auto;
-  width: 100%;
-  height: 100%;
-  display: block;
 }

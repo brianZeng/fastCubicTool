@@ -1,13 +1,18 @@
-.icon-range{
+.icon-range($size:18px){
   overflow: hidden;
   >img,>p,>input{display: inline-block;float: left}
-  >img($size:18px){
+  >img{
   height: $size;
   width: $size;
   cursor: pointer;
 }
   >p{
     padding-top: 2px;
+    height: $size;
+    overflow: hidden;
+    width:72px;
+    margin-left: 1px;
+    text-overflow: clip;;
   }
   >input[type=range]{
     min-width: 150px;

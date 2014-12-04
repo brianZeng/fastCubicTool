@@ -33,6 +33,7 @@ menu($height:$menuHeight;$textColor:white;$background:$deepBlue){
   clear: both;
  .drop{
    max-width: 125px;
+   width: 10%;
    position: relative;
    top:-10px;
  }

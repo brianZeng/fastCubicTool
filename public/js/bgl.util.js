@@ -239,7 +239,7 @@ if (bgl)
         };
         camera.rotate(180,0,1,0);
         camera.translate(0,0,0.3);
-        camera.rotate(10,1,0,0);
+      //  camera.rotate(10,1,0,0);
         camera.save();
       }
     };

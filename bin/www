@@ -2,11 +2,13 @@
 var debug = require('debug')('cuibcTool');
 var app = require('../app');
 var port=process.env.PORT || 3033;
+process.env.DEBUG="";
 app.set('port',port );
 
 var server = app.listen(app.get('port'), function () {
   debug('Express server listening on port ' + server.address().port);
 });
+if(process.env.DEBUG)
 require('domain').create().run(function(){
   var open= require('open'),address='http://localhost:'+port;
   open(address,'chrome',function(e){

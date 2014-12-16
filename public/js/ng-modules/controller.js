@@ -1,13 +1,13 @@
 /**
  * Created by 柏然 on 2014/11/25.
  */
-if (window.app) {
+
   (function(module){
     function findByName(arr,name){
       for(var i= 0,obj=arr[0];obj;obj=arr[++i])
        if(obj.name===name)return obj;
     }
-    module.controller('bannerController', function ($scope,$timeout, imgFactory,cfgFactory,glFactory) {
+    module.controller('bannerController', ['$scope','$timeout','imgFactory','cfgFactory','glFactory',function ($scope,$timeout, imgFactory,cfgFactory,glFactory) {
         $scope.waiting = $scope.waitingScene=0;
         $scope.scenes=cfgFactory.scenes;
         $scope.states=cfgFactory.states;
@@ -66,8 +66,8 @@ if (window.app) {
          // if($scope.scenes[0])
          //   $scope.chooseScene($scope.scenes[0]);
         });
-    }).
-      controller('dropController', function ($scope) {
+    }]).
+      controller('dropController', ['$scope',function ($scope) {
         $scope.toggle=function(state){
           $scope.showMenu=!$scope.showMenu;
         };
@@ -87,8 +87,8 @@ if (window.app) {
             if(role=='mode'&&evt.modeDef)$scope.iconSrc=evt.modeDef.iconSrc;
           }
         })
-      }).
-      controller('rangeController',function($scope,glFactory){
+      }]).
+      controller('rangeController',['$scope','glFactory',function($scope,glFactory){
           $scope.mutable=false;
           $scope.onchange=function(v){
            var role=$scope.role;
@@ -110,8 +110,6 @@ if (window.app) {
             else if(role=='w0') $scope.value=state.weights[0]*100;
             else if(role=='w1') $scope.value=state.weights[1]*100;
           });
-      });
+      }]);
 
   })(window.app.ngModule);
-
-}

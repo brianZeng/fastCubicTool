@@ -1,10 +1,9 @@
 /**
  * Created by 柏然 on 2014/11/25.
  */
-if(window.app)
-  (function(module){
+(function(module){
     module.
-      factory('imgFactory',function($q){
+      factory('imgFactory',['$q',function($q){
         var imgChannel={},baseAddr='resources\\';
         function imgPromise(src){
           var d=$q.defer(),img=new Image();
@@ -26,7 +25,7 @@ if(window.app)
             else if(src.map)return $q.all(src.map(function(s){return getImg(s);}));
           }
         }
-      }).
+      }]).
       factory('cfgFactory',function(){
         return window.app.cfg;
       }).

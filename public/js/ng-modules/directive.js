@@ -1,8 +1,7 @@
 /**
  * Created by 柏然 on 2014/11/25.
  */
-if(window.app){
-  var module=window.app.ngModule;
+(function(module){
   module.directive('drop',function(){
     return {
       restrict:'EA',
@@ -42,5 +41,5 @@ if(window.app){
         "<input type='range' ng-model='value' ng-disabled='!mutable'  ng-change='onchange(value)' min='{{min}}' max='{{max}}' step='{{step}}' ng-class=\"{true:'active',false:'inactive'}[mutable]\">" +
         "</div>"
     }
-  })
-}
+  });
+})(window.app.ngModule);

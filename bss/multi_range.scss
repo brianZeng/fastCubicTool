@@ -1,0 +1,11 @@
+.multi-range{
+  position: relative;
+  top:8px;
+  .icon-range{
+    width: 100%;
+    padding-top: 12px;
+    input[type=range]{
+      margin-left: 2px;
+    }
+  }
+}

@@ -12,13 +12,13 @@
         $scope.scenes=cfgFactory.scenes;
         $scope.states=cfgFactory.states;
         $scope.covering=1;
+      //  $scope.lgNames=['a','b','c'];
        function switchLoading(wait){
           var evt=wait? 'beginLoading':'endLoading';
           $scope.$broadcast(evt);
           $scope.waiting=wait;
         }
         $scope.chooseScene=function(scene){
-
           $scope.modes=scene.modes;
           $scope.curScene=scene;
           $scope.chooseState(findByName($scope.states,scene.defState));
@@ -32,6 +32,7 @@
           glFactory.setABK.apply(null,sceneMode.ABK);
           switchLoading(true);
           $scope.$broadcast('dropTitleChange',{selected:mode.name,role:'mode',modeDef:cfgFactory.modes[mode.name]});
+          $scope.lgNames=sceneMode.lgNames;
           imgFactory.$get(sceneMode.res).then(function(imgs){
             glFactory.imgs=imgs;
             switchLoading(false);
@@ -110,6 +111,55 @@
             else if(role=='w0') $scope.value=state.weights[0]*100;
             else if(role=='w1') $scope.value=state.weights[1]*100;
           });
+      }]).
+      controller('multiController',['$scope','glFactory',function($scope,glFactory){
+         $scope.mutable=false;
+         $scope.values=[];
+         $scope.oriTitle=$scope.title;
+         $scope.toggle=function(all){
+           if(all){
+             $scope.onselect(undefined);
+             $scope.onchange($scope.value);
+           }else
+             $scope.showMenu=!$scope.showMenu;
+        };
+         $scope.onselect=function(index){
+           $scope.values[$scope.selectedIndex]=$scope.value;
+           $scope.selectedIndex=index;
+           $scope.title=$scope.items[index];
+           $scope.value=$scope.values[index]||0;
+         };
+         $scope.onchange=function(v){
+           var role=$scope.role,i=$scope.selectedIndex;
+           v=parseInt(v);
+           if(i===undefined){
+             $scope.value=($scope.values=$scope.items.map(function(){return v}))[0];
+             $scope.title=$scope.oriTitle;
+           }
+           if(role=='weight')
+             glFactory.setWight(i,v/100);
+           else if(role=='tem')
+             glFactory.setTem(i,v);
+         };
+        $scope.$on('stateChange',function(e,state){
+          var role=$scope.role,value;
+          $scope.mutable=state.mutable;
+          if(role=='tem'){
+            var tem=state.tem;
+            $scope.min=tem.min;
+            $scope.max=tem.max;
+            $scope.step=tem.step;
+            value=$scope.value=state.defTem;
+            $scope.values=state.weights.map(function(){return value;});
+          }
+          else if(role=='weight'){
+            $scope.min=0;
+            $scope.max=100;
+            $scope.step=1;
+            $scope.value=($scope.values=state.weights.map(function(w){return w*100;}))[0];
+          }
+
+        });
       }]);
 
   })(window.app.ngModule);

@@ -1,5 +1,15 @@
 {
   "scenes": {
+    "测试小图片":{
+      "白天":{
+        "res":["P1_G_D_FT.jpg", "P1_G_D_AS.jpg"],
+        "lgNames":["重点","周边"],
+        "ABK":[3,3.8985],
+        "default":true
+      },
+      "dir":"Gap_min",
+      "defState":"70%"
+    },
     "大门": {
       "白天有装饰":{
         "res":["P1_G_D_FT.jpg", "P1_G_D_AS.jpg"],

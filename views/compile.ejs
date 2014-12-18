@@ -2,16 +2,17 @@
 <html>
   <head>
     <title><%= title %></title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
       <link rel='stylesheet' href='stylesheets/style.css'  />
       <link rel="stylesheet" href="bss.css" />
-      <script src="js/bin/bgl.min.js"></script>
+      <script type="application/json" id="cfg"><%- JData%></script>
   </head>
   <body ng-app="br" ng-controller="bannerController">
 
   <div id="shadow" ng-show="waiting">
     <div></div>
   </div>
-  <input type="hidden" value="<%= JData%>" id="cfg">
   <menu>
       <drop items="scenes" title="位置选择" role="scene" icon-src="images/location.png"></drop>
       <drop items="states" title="场景选择" role="state" icon-src="images/modle1.png"></drop>
@@ -25,6 +26,7 @@
       <img src="images/entry.jpg" class="cover">
   </div>
   <canvas id="glcvs"></canvas>
+  <script src="js/bin/bgl.min.js"></script>
   <script src="js/angular/angular.min.js"></script>
   <script src="js/bin/ng.min.js"></script>
   <link rel="stylesheet" src="stylesheets/angular-csp.css">

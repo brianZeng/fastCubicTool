@@ -4,7 +4,7 @@
  window.app={
    ngModule:angular.module('br',[]),
    cfg:(function(){
-     var input=document.querySelector('#cfg'),src=input.value;
-     return input.value=''||JSON.parse(src);
+     var input=document.querySelector('#cfg'),src=input.innerHTML;
+     return input.innerHTML=''||JSON.parse(src);
    })()
  };

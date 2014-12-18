@@ -37,16 +37,20 @@ menu($height:$menuHeight;$textColor:white;$background:$deepBlue){
    position: relative;
    top:-10px;
  }
+ .multi-range{
+   width: 20%;
+   min-width: 340px;
+ }
  .icon-range{
    max-width: 350px;
    min-width: 260px;
    width: 15%;
  }
-.drop,.icon-range{
+.drop,.icon-range,.multi-range{
   height: $height;
   min-width: 100px;
   display: inline-block;
-  padding-top: 9px;
+ // padding-top: 9px;
   margin:0px auto;
   clear: both;
 }

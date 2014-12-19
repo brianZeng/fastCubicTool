@@ -2,7 +2,7 @@
 var debug = require('debug')('cuibcTool');
 var app = require('../app');
 var port=process.env.PORT || 3033;
-process.env.DEBUG="1";
+//process.env.DEBUG="1";
 app.set('port',port );
 
 var server = app.listen(app.get('port'), function () {

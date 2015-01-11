@@ -1,0 +1,64 @@
+{
+  "scenes": {
+    "P1": {
+      "res":["RS291NB_D.jpg", "RS291WB_D.jpg"],
+      "mode":{
+        "天气感应":{
+          "ABK":[2,3.9999],
+          "state":{
+            "晴天":{"weights":[0.3,0.3,1]},
+            "阴天":{"weights":[1,1,0.3]},
+            "夜间":{"weights":[1,0,0]},
+            "自定义":"mutable"
+          },
+          "default":true
+        },
+        "时间感应":{
+          "ABK":[3,3.9999],
+          "state":{
+            "自定义":"mutable"
+          }
+        },
+        "氛围":{
+          "state":{
+            "温馨":"温馨",
+            "浪漫":"浪漫"
+          }
+        }
+      },
+      "dir": "P1/",
+      "defTem":4000,
+      "defState":"标准场景"
+    }
+  },
+  "states":{
+    "mutable":{
+      "weights":1,
+      "mutable":true
+    },
+    "温馨":{
+      "weights":[0.3,0.3],
+      "tems":[3000,3000]
+    },
+    "浪漫":{
+      "weights":[0.3,0.5],
+      "tems":[4000,3000]
+    }
+  },
+  "modes":{
+    "白天默认":{
+      "iconSrc":"images/sun.png"
+    },
+    "晚上默认":{
+      "iconSrc":"images/moon.png"
+    },
+    "白天onespace":{
+      "iconSrc":"images/sun.png"
+    },
+    "晚上无装饰":{
+      "iconSrc":"images/moon.png"
+    }
+  },
+  "title":"Ford",
+  "baseTem":5000
+}

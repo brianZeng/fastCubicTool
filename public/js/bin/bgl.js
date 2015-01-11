@@ -1,6 +1,3 @@
-/**
- * Created by 柏然 on 14-1-23.
- */
 window.requestAFrame = (function () {
   return window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -1739,7 +1736,9 @@ bgl.animation.TimingFunctions = {
     click: function (e) {
     },
     mousedown: function (e) {
-      this.add(new PointEvent(e, actionType.DOWN));
+      if(e.button!==2){
+        this.add(new PointEvent(e, actionType.DOWN));
+      }
     },
     mouseup: function (e) {
       this.add(new PointEvent(e, actionType.UP));
@@ -1747,9 +1746,12 @@ bgl.animation.TimingFunctions = {
     mousemove: function (e) {
       var cur = new PointEvent(e, actionType.MOVE),
         array = this.pEvents[cur.identifier], pre;
-      if (array && array.length > 0)pre = array[array.length - 1];
+      if (array && array.length > 0){
+        pre = array[array.length - 1];
+      }
       if (!this.ignoreEvent(cur, pre))
         this.add(cur);
+      console.log(cur.event);
     },
     keydown: {
       fun: function (e) {
@@ -3882,9 +3884,6 @@ bgl.data = {
   });
 })();
 
-/**
- * Created by 柏然 on 2014/6/17.
- */
 if (bgl)
   /**
    *

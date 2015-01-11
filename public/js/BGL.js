@@ -1472,7 +1472,7 @@ bgl.animation.TimingFunctions = {
       }
       if (!this.ignoreEvent(cur, pre))
         this.add(cur);
-      console.log(cur.event);
+
     },
     keydown: {
       fun: function (e) {

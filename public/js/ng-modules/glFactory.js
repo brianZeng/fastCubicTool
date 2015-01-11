@@ -30,11 +30,13 @@ angular.module('br').
         var imgs=state.imgs,lums=state.lums,weights=state.weights,tems=state.tems;
         if(!$rootScope.$$phase)$rootScope.$digest();
         glPort.reset(state.lgNum);
-        for(var i= 0,baseTem= state.baseTem,num=imgs.length;i< num;i++){
+        for(var i= 0,baseTem= state.baseTem,sum= 0,weight,num=imgs.length;i< num;i++){
           glPort.changeImg(i, imgs[i]);
-          glPort.changeIntensity(i,( lums[i]* weights[i])||0);
+          glPort.changeIntensity(i,( lums[i]* (weight=weights[i]||0)));
+          sum+=weight;
           glPort.changeTem(i, tems[i], baseTem);
         }
+        glPort.changeSumIntensity(sum);
         state.dirty=false;
       }
     };

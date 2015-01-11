@@ -55,7 +55,7 @@ if (bgl)
       })
     };
     expoter.changeSumIntensity = function sumIntensity(sum) {
-      sum = parseInt(sum);
+      sum = Number(sum);
       if (!sum || sum <= 0) return console.warn('sumIntensity must larger than 0');
       roomBlender.findBinder('uSumIntensity').value = sum;
       roomRender.findBinder('uSumIntensity').value = sum;

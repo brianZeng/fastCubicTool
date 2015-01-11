@@ -1,104 +1,97 @@
 {
   "scenes": {
-    "大门": {
-      "白天有装饰":{
-        "res":["P1_G_D_AS.jpg", "P1_G_D_FT.jpg"],
-        "ABK":[1.9767,3.8985],
+    "P1": {
+      "白天默认":{
+        "res":["RS291NB_D.jpg", "RS291WB_D.jpg"],
+        "ABK":[2,3.9999],
         "default":true
       },
-      "晚上有装饰":{
-        "res":["P1_G_N_AS.jpg", "P1_G_N_FT.jpg"],
-        "ABK":[1.9767,3.8985]
+      "晚上默认":{
+        "res":["RS291NB_N.jpg", "RS291WB_N.jpg"],
+        "ABK":[3,3.9999]
       },
-      "白天无装饰":{
-        "res":["P1_NG_D_AS.jpg", "P1_NG_D_FT.jpg"],
-        "ABK":[1.9767,3.8985]
-      },
-      "晚上无装饰":{
-        "res":["P1_NG_N_AS.jpg", "P1_NG_N_FT.jpg"],
-        "ABK":[1.9767,3.8985]
-      },
-     "dir": "Gap",
-     "defState":"70%"
-    },"橱窗":{
-      "晚上1":{
-        "res":["P2_all_off_model.jpg", "P2_all_off_poster.jpg"],
-        "ABK":[4.15,2.14],
+      "dir": "P1",
+      "defState":"标准场景"
+    },
+    "P2":{
+      "白天默认":{
+        "res":["RS291NB_D.jpg", "RS291WB_D.jpg"],
+        "ABK":[1.8,4.0],
         "default":true
       },
-      "晚上2":{
-        "res":["P2_off_model.jpg", "P2_off_poster.jpg"],
-        "ABK":[2.67,4.0]
+      "晚上默认":{
+        "res":["RS291NB_N.jpg", "RS291WB_N.jpg"],
+        "ABK":[3,4]
+      },
+      "白天onespace":{
+        "res":["RS291NB_D.jpg", "RS291WB_D.jpg", "OneSpace_D.jpg"],
+        "ABK":[1.8,8.9999]
+      },
+      "白天bluesky":{
+        "res":["RS291NB_D.jpg", "RS291WB_D.jpg", "bluesky_D.jpg"],
+        "ABK":[1.8,8.9999]
+      },
+      "晚上bluesky":{
+        "res":["RS291NB_D.jpg", "RS291WB_D.jpg", "bluesky_N.jpg"],
+        "ABK":[1.8,8.9999]
+      },
+      "晚上LTP":{
+        "res":["RS291NB_N.jpg", "RS291WB_N.jpg", "LTP_N.jpg"],
+        "ABK":[1.8,8.9999]
+      },
+      "白天创意":{
+        "res":["RS291NB_D.jpg", "RS291WB_D.jpg", "Bluesky_D.jpg", "OneSpace_D.jpg"],
+        "ABK":[1.8,8.9999]
+      },
+      "晚上创意":{
+        "res":["RS291NB_N.jpg", "RS291WB_N.jpg", "Bluesky_N.jpg", "OneSpace_N.jpg", "LTP_N.jpg"],
+        "ABK":[1.8,8.9999]
+      },
+      "dir":"P2",
+      "defState":"标准场景"
+    },
+    "P3":{
+      "晚上":{
+        "res":["LTP_N.jpg", "OneSpace_N.jpg"],
+        "ABK":[5,4],
+        "default": true
       },
       "白天":{
-        "res":["P2_on_model.jpg", "P2_on_poster.jpg"],
-        "ABK":[1.89217801389,4.0]
+        "res":["LTP.jpg", "OneSpace.jpg"],
+        "ABK":[2.5,4]
       },
-      "dir":"p2",
-      "defState":"70%"
+      "dir":"P3",
+      "defState":"标准场景"
     }
-
   },
   "states":{
-    "Off":{
-      "weights":[0,0],
-      "tem":{
-        "min":2500,
-        "max":8000,
-        "step":200
-      },
+    "标准场景":{
+      "weights":[1,1,0],
+      "defLum":100,
+      "defTem":4000,
       "order":1
     },
-    "30%":{
-      "weights":[1,1],
-      "defLum":30,
-      "defTem":3000,
-      "order":2
-    },
-    "70%":{
-      "weights":[1,1],
-      "defLum":70,
-      "defTem":3000,
-      "order":3
-    },
-    "温馨":{
-      "weights":[1,1],
-      "defLum":10,
-      "defTem":3000,
-      "order":4
-    },
-    "活力":{
-      "weights":[0.3,1],
-      "defLum":100,
-      "defTem":3000,
-      "order":5
-    },
-    "正式":{
-      "weights":[1,1],
-      "defLum":100,
-      "defTem":6500,
-      "order":6
-    },
-    "自定义":{
-      "weights":[1,1],
+    "定制场景":{
+      "weights":[1,1,1,1,1],
+      "defTem":4000,
       "mutable":true,
-      "order":7
+      "order":2
     }
   },
   "modes":{
-    "白天有装饰":{
+    "白天默认":{
       "iconSrc":"images/sun.png"
     },
-    "晚上有装饰":{
+    "晚上默认":{
       "iconSrc":"images/moon.png"
     },
-    "白天无装饰":{
+    "白天onespace":{
       "iconSrc":"images/sun.png"
     },
     "晚上无装饰":{
       "iconSrc":"images/moon.png"
     }
   },
-  "title":"GAP",
+  "title":"Ford",
   "baseTem":5000
 }

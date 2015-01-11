@@ -1457,7 +1457,9 @@ bgl.animation.TimingFunctions = {
     click: function (e) {
     },
     mousedown: function (e) {
-      this.add(new PointEvent(e, actionType.DOWN));
+      if(e.button!==2){
+        this.add(new PointEvent(e, actionType.DOWN));
+      }
     },
     mouseup: function (e) {
       this.add(new PointEvent(e, actionType.UP));
@@ -1465,9 +1467,12 @@ bgl.animation.TimingFunctions = {
     mousemove: function (e) {
       var cur = new PointEvent(e, actionType.MOVE),
         array = this.pEvents[cur.identifier], pre;
-      if (array && array.length > 0)pre = array[array.length - 1];
+      if (array && array.length > 0){
+        pre = array[array.length - 1];
+      }
       if (!this.ignoreEvent(cur, pre))
         this.add(cur);
+      console.log(cur.event);
     },
     keydown: {
       fun: function (e) {
@@ -2449,7 +2454,7 @@ bgl.model.Camera.prototype = {
       _top: this._top.paste()
     }, ss = this._states || [];
     this.allOwnPros(function (value, name) {
-      if (typeof value != "object") s[name] = value;
+      if (typeof value != "object"&&name[0]=='_') s[name] = value;
     });
     ss.push(s);
     this._states = ss;

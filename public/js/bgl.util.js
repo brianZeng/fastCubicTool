@@ -30,6 +30,7 @@ if (bgl)
         renderFrameBuffer.width = renderConfig.width = param.w;
         renderFrameBuffer.height = renderConfig.height = param.h;
         expoter.expanded = !!expand;
+
       },
       maxTextureSize: 4096
     }, roomRender, roomBlender, renderConfig, renderFrameBuffer;
@@ -60,17 +61,20 @@ if (bgl)
       roomRender.findBinder('uSumIntensity').value = sum;
       return sum;
     };
+    expoter.restoreCamera=function(){
+      var camera = roomRender.scene.camera, at = camera._at;
+      camera.restore();
+      camera.save();
+      expoter.adjustCanvas(null,expoter.expanded);
+    };
     expoter.reset = function (lgNum) {
-      var geos = roomRender._geometries, camera = roomRender.scene.camera, at = camera._at;
+      var geos = roomRender._geometries;
       for (var i = 0, geo = geos[0]; geo; geo = geos[++i]) {
         geo.binders['uIntensity'].value = 0;
         if (i >= lgNum) geo.enable = false;
       }
       roomBlender.findBinder('uSumIntensity').value = lgNum;
       roomRender.findBinder('uSumIntensity').value = lgNum;
-      // camera.restore();
-      //camera.save();
-      //camera.translate(-at.x, -at.y, -at.z);
     };
     expoter.turnOff = function () {
       roomRender._geometries.forEach(function (g) {
@@ -232,8 +236,10 @@ if (bgl)
             expoter.emit('move', [camera]);
           }
         };
-        camera.save();
         camera.rotate(180,0,1,0);
+        camera.translate(0,0,0.3);
+      //  camera.rotate(10,1,0,0);
+        camera.save();
       }
     };
 

@@ -4,18 +4,19 @@
   min-width: 62px;
   background: $background;
   margin:5px auto;
-  width: 80%;
+  width: 90%;
   float:left;
   cursor: pointer;
-  >p,>div($itemHeight:23px){
+  >p,>div($itemHeight:32px){
     background: $background;
     position: relative;
     display: block;
-    top:-$itemHeight;
+    top:-$itemHeight+10px;
     height: $itemHeight;
     margin:0 auto;
-    padding-top: 4px;
+    padding-top: 7px;
     color: $deepGray;
+
     &:hover{
       background: $hoverBack;
       color: white;

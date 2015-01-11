@@ -1,10 +1,29 @@
 .dropHeader{
   height:$menuHeight;
-  >img($size:18px){
+  >img($size:22px){
     display: inline-block;
     height: $size;
     width: $size;
     cursor: pointer;
   }
-
 }
+
+/*
+.drop .menu{
+  >p{
+    overflow: hidden;
+    text-align: left;
+    &:hover > b{
+      @include $ring -> lib($outerColor:$textColor;$size:12px);
+    }
+    > b {
+      @include $ring -> lib($size:12px;$outerColor:$deepBlue);
+      margin: 0 3px;
+      content: '';
+      display: inline-block;
+      position: relative;
+
+    }
+  }
+}
+*/

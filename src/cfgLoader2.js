@@ -8,10 +8,12 @@ function normalizePlace(name,scene,defState){
   delete  scene.defState;
   delete  scene.dir;
   Object.getOwnPropertyNames(scene).forEach(function(key){
-    var sceneMode=scene[key],res;
-    if(dir)res=sceneMode.res.map(function(p){return path.join(dir,p)});
+    var sceneMode=scene[key],res,lgNames=sceneMode.lgNames||[];
+    if(dir)res=sceneMode.res.map(function(p,i){
+      lgNames[i]=lgNames[i]|| p.substring(0, p.lastIndexOf('.'))||p;
+      return path.join(dir,p);});
     else res=sceneMode.res.slice();
-    r.modes.push({name:key,res:res,ABK:sceneMode.ABK});
+    r.modes.push({name:key,res:res,ABK:sceneMode.ABK,lgNames:lgNames});
     if(sceneMode.default)r.defMode=key;
   });
   return r;

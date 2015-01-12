@@ -61,11 +61,11 @@ if (bgl)
       roomRender.findBinder('uSumIntensity').value = sum;
       return sum;
     };
-    expoter.restoreCamera=function(){
+    expoter.restoreCamera = function () {
       var camera = roomRender.scene.camera, at = camera._at;
       camera.restore();
       camera.save();
-      expoter.adjustCanvas(null,expoter.expanded);
+      expoter.adjustCanvas(null, expoter.expanded);
     };
     expoter.reset = function (lgNum) {
       var geos = roomRender._geometries;
@@ -109,15 +109,18 @@ if (bgl)
     expoter.changeTem = function (index, target, base) {
       return roomRender._geometries[index].findBinder('uTemRatio').value = target <= 0 ? bgl.data.getRGBRatio(-target) : bgl.data.getTemRatio(target, base)
     };
-    Object.defineProperty(expoter, 'onmove', {set: function (f) {
-      expoter.on('move', f);
-    }});
+    Object.defineProperty(expoter, 'onmove', {
+      set: function (f) {
+        expoter.on('move', f);
+      }
+    });
     var shaders = option.shaders || {
-      roomVS: 'precision mediump float;attribute vec3 aVertex;attribute vec2 aTexCoord;uniform mat4 uMVPMatrix;varying vec2 vTexCoord;void main(){gl_Position=vec4(aVertex,1.0)*uMVPMatrix;vTexCoord=aTexCoord;}',
-      roomFS: 'precision highp float;varying vec2 vTexCoord;uniform sampler2D sEnv0;uniform float uIntensity;uniform float uSumIntensity;uniform mat3 uRGBtoXYZ;uniform mat3 uXYZtoRGB;uniform vec3 uTemRatio;float YRatio(vec3 c0,vec3 xyz){  return (c0*uRGBtoXYZ).y/xyz.y;}vec3 RGBtoXYZ(vec3 rgb){    vec3 xyz=rgb*uTemRatio*uRGBtoXYZ;	return xyz*YRatio(rgb,xyz)*uIntensity;}void main(){vec3 c=RGBtoXYZ(texture2D(sEnv0,vTexCoord).rgb);gl_FragColor=vec4(c*uXYZtoRGB,1.0/uSumIntensity);}', blendVS: 'precision mediump float;attribute vec2 aTexCoord;varying vec2 vTexCoord;void main(){gl_Position=vec4(aTexCoord,0.0,1.0);vTexCoord=vec2(aTexCoord.x*0.5+0.5,aTexCoord.y*0.5+0.5);}',
-      blendFS: 'precision highp float;uniform vec4 uCalParam;uniform mat3 uRGBtoXYZ;uniform mat3 uXYZtoRGB;varying vec2 vTexCoord;uniform sampler2D sBuffer;uniform float uSumIntensity;vec3 Reinhard(vec3 xyz,float A, float B){    vec3 res=vec3(0.0);    res.y=xyz.y* A;	res.y=res.y *(1.0+ res.y/B)/(1.0+res.y);	float r=res.y/xyz.y;	res.x=xyz.x*r;	res.z=xyz.z*r;	return res;}vec3 XYZtoRGB(vec3 xyz){ return xyz*uXYZtoRGB;}void main(){ vec3 sumXYZ=texture2D(sBuffer,vTexCoord).rgb*uSumIntensity*uRGBtoXYZ; vec3 res=Reinhard(sumXYZ,uCalParam[0],uCalParam[1]); res=XYZtoRGB(res); gl_FragColor=vec4(res,1.0);}'
+        roomVS: 'precision mediump float;attribute vec3 aVertex;attribute vec2 aTexCoord;uniform mat4 uMVPMatrix;varying vec2 vTexCoord;void main(){gl_Position=vec4(aVertex,1.0)*uMVPMatrix;vTexCoord=aTexCoord;}',
+        roomFS: 'precision highp float;varying vec2 vTexCoord;uniform sampler2D sEnv0;uniform float uIntensity;uniform float uSumIntensity;uniform mat3 uRGBtoXYZ;uniform mat3 uXYZtoRGB;uniform vec3 uTemRatio;float YRatio(vec3 c0,vec3 xyz){  return (c0*uRGBtoXYZ).y/xyz.y;}vec3 RGBtoXYZ(vec3 rgb){    vec3 xyz=rgb*uTemRatio*uRGBtoXYZ;	return xyz*YRatio(rgb,xyz)*uIntensity;}void main(){vec3 c=RGBtoXYZ(texture2D(sEnv0,vTexCoord).rgb);gl_FragColor=vec4(c*uXYZtoRGB,1.0/uSumIntensity);}',
+        blendVS: 'precision mediump float;attribute vec2 aTexCoord;varying vec2 vTexCoord;void main(){gl_Position=vec4(aTexCoord,0.0,1.0);vTexCoord=vec2(aTexCoord.x*0.5+0.5,aTexCoord.y*0.5+0.5);}',
+        blendFS: 'precision highp float;uniform vec4 uCalParam;uniform mat3 uRGBtoXYZ;uniform mat3 uXYZtoRGB;varying vec2 vTexCoord;uniform sampler2D sBuffer;uniform float uSumIntensity;vec3 Reinhard(vec3 xyz,float A, float B){    vec3 res=vec3(0.0);    res.y=xyz.y* A;	res.y=res.y *(1.0+ res.y/B)/(1.0+res.y);	float r=res.y/xyz.y;	res.x=xyz.x*r;	res.z=xyz.z*r;	return res;}vec3 XYZtoRGB(vec3 xyz){ return xyz*uXYZtoRGB;}void main(){ vec3 sumXYZ=texture2D(sBuffer,vTexCoord).rgb*uSumIntensity*uRGBtoXYZ; vec3 res=Reinhard(sumXYZ,uCalParam[0],uCalParam[1]); res=XYZtoRGB(res); gl_FragColor=vec4(res,1.0);}'
 
-    }, config = {
+      }, config = {
       rootRender: function (rootRender) {
         rootRender.addBinder(function (gl, cfg) {
           cfg.glClear(true);
@@ -126,7 +129,7 @@ if (bgl)
           var clock = new bgl.animation.SimpleClock(40, 1, 1, 0, null, true);
           clock.ontick = function (ov, timeline) {
             //timeline.scene.camera.orient((ov - clock.value));
-             timeline.scene.camera.rotate(Math.sin(clock.value-ov)*360,0,1,0);
+            timeline.scene.camera.rotate(Math.sin(clock.value - ov) * 360, 0, 1, 0);
           };
           expoter.autoPlay = function (dur) {
             if (!clock._stopped)return;
@@ -190,9 +193,11 @@ if (bgl)
             gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
           }, 'buffer');
         blender.add(new bgl.model.Geometry([0, 1, 2, 0, 2, 3]));
-        Object.defineProperty(expoter, 'blender', {get: function () {
-          return blender;
-        }});
+        Object.defineProperty(expoter, 'blender', {
+          get: function () {
+            return blender;
+          }
+        });
         roomBlender = blender;
         expoter.blender = blender;
         return blender;
@@ -215,7 +220,7 @@ if (bgl)
       },
       camera: function (camera) {
         camera.far = 5;
-        camera.fovy=30;
+        camera.fovy = 30;
         camera.move = function (dir) {
           var d = this.to, pos = 0.02, dis;
           switch (dir) {
@@ -236,9 +241,9 @@ if (bgl)
             expoter.emit('move', [camera]);
           }
         };
-        camera.rotate(180,0,1,0);
-        camera.translate(0,0,0.3);
-      //  camera.rotate(10,1,0,0);
+        camera.rotate(180, 0, 1, 0);
+        camera.translate(0, 0, 0.3);
+        //  camera.rotate(10,1,0,0);
         camera.save();
       }
     };
@@ -255,9 +260,9 @@ if (bgl)
           this.shouldClear = true;
           var t1 = touches[0], t2 = touches[1], x1 = t1.dx, x2 = t2.dx, y1 = t1.dy, y2 = t2.dy;
           if (x1 < 0 && x2 < 0) return cfg.curCamera.move('right');
-          else if (x2 > 0 && x1 > 0)return  cfg.curCamera.move('left');
+          else if (x2 > 0 && x1 > 0)return cfg.curCamera.move('left');
           if (y1 < 0 && y2 < 0) return cfg.curCamera.move('down');
-          else if (y2 > 0 && y1 > 0) return  cfg.curCamera.move('up');
+          else if (y2 > 0 && y1 > 0) return cfg.curCamera.move('up');
           if (t1.event == t2.event && t1.eventType == 'drag') {
             var lt = t1.clientX < t2.clientX ? t1 : t2, rt = lt == t1 ? t2 : t1;
             var dt = t1.clientY > t2.clientY ? t1 : t2, ut = dt == t1 ? t2 : t1;
@@ -320,11 +325,13 @@ if (bgl)
       rootRender.add(config.roomBlender(gl));
       config.eventPool(cfg.eventPool);
       config.camera(scene.camera);
-      expoter.camera=scene.camera;
+      expoter.camera = scene.camera;
       expoter.adjustCanvas(canvas, false);
-      Object.defineProperty(expoter, 'onupdate', {set: function (f) {
-        cfg.on('update', f)
-      }});
+      Object.defineProperty(expoter, 'onupdate', {
+        set: function (f) {
+          cfg.on('update', f)
+        }
+      });
       cfg.run();
     }
 

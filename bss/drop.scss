@@ -1,11 +1,11 @@
-.dropHeader{
-  height:$menuHeight;
-  >img($size:22px){
-    display: inline-block;
-    height: $size;
-    width: $size;
-    cursor: pointer;
-  }
+.dropHeader {
+  height: $menuHeight;
+> img($size:22 px) {
+  display: inline-block;
+  height: $size;
+  width: $size;
+  cursor: pointer;
+}
 }
 
 /*

@@ -1,97 +1,103 @@
 {
   "scenes": {
     "P1": {
-      "白天默认":{
-        "res":["RS291NB_D.jpg", "RS291WB_D.jpg"],
-        "ABK":[2,3.9999],
-        "default":true
+      "res": [
+        "RS291NB_D.jpg",
+        "RS291WB_D.jpg"
+      ],
+      "mode": {
+        "天气感应": {
+          "ABK": [
+            2,
+            3.9999
+          ],
+          "state": {
+            "阴天": {
+              "weights": [
+                0.3,
+                0.3,
+                1
+              ]
+            },
+            "晴天": {
+              "weights": [
+                1,
+                1,
+                0.3
+              ]
+            },
+            "夜间": {
+              "weights": [
+                1,
+                0,
+                0
+              ]
+            },
+            "自定义": "mutable"
+          },
+          "default": true
+        },
+        "时间感应": {
+          "ABK": [
+            3,
+            3.9999
+          ],
+          "state": {
+            "自定义": "mutable"
+          }
+        },
+        "氛围": {
+          "state": {
+            "温馨": "温馨",
+            "浪漫": "浪漫"
+          }
+        }
       },
-      "晚上默认":{
-        "res":["RS291NB_N.jpg", "RS291WB_N.jpg"],
-        "ABK":[3,3.9999]
-      },
-      "dir": "P1",
-      "defState":"标准场景"
-    },
-    "P2":{
-      "白天默认":{
-        "res":["RS291NB_D.jpg", "RS291WB_D.jpg"],
-        "ABK":[1.8,4.0],
-        "default":true
-      },
-      "晚上默认":{
-        "res":["RS291NB_N.jpg", "RS291WB_N.jpg"],
-        "ABK":[3,4]
-      },
-      "白天onespace":{
-        "res":["RS291NB_D.jpg", "RS291WB_D.jpg", "OneSpace_D.jpg"],
-        "ABK":[1.8,8.9999]
-      },
-      "白天bluesky":{
-        "res":["RS291NB_D.jpg", "RS291WB_D.jpg", "bluesky_D.jpg"],
-        "ABK":[1.8,8.9999]
-      },
-      "晚上bluesky":{
-        "res":["RS291NB_D.jpg", "RS291WB_D.jpg", "bluesky_N.jpg"],
-        "ABK":[1.8,8.9999]
-      },
-      "晚上LTP":{
-        "res":["RS291NB_N.jpg", "RS291WB_N.jpg", "LTP_N.jpg"],
-        "ABK":[1.8,8.9999]
-      },
-      "白天创意":{
-        "res":["RS291NB_D.jpg", "RS291WB_D.jpg", "Bluesky_D.jpg", "OneSpace_D.jpg"],
-        "ABK":[1.8,8.9999]
-      },
-      "晚上创意":{
-        "res":["RS291NB_N.jpg", "RS291WB_N.jpg", "Bluesky_N.jpg", "OneSpace_N.jpg", "LTP_N.jpg"],
-        "ABK":[1.8,8.9999]
-      },
-      "dir":"P2",
-      "defState":"标准场景"
-    },
-    "P3":{
-      "晚上":{
-        "res":["LTP_N.jpg", "OneSpace_N.jpg"],
-        "ABK":[5,4],
-        "default": true
-      },
-      "白天":{
-        "res":["LTP.jpg", "OneSpace.jpg"],
-        "ABK":[2.5,4]
-      },
-      "dir":"P3",
-      "defState":"标准场景"
+      "dir": "P1/",
+      "defTem": 4000,
+      "defState": "标准场景"
     }
   },
-  "states":{
-    "标准场景":{
-      "weights":[1,1,0],
-      "defLum":100,
-      "defTem":4000,
-      "order":1
+  "states": {
+    "mutable": {
+      "weights": 1,
+      "mutable": true
     },
-    "定制场景":{
-      "weights":[1,1,1,1,1],
-      "defTem":4000,
-      "mutable":true,
-      "order":2
+    "温馨": {
+      "weights": [
+        0.3,
+        0.3
+      ],
+      "tems": [
+        3000,
+        3000
+      ]
+    },
+    "浪漫": {
+      "weights": [
+        0.3,
+        0.5
+      ],
+      "tems": [
+        4000,
+        3000
+      ]
     }
   },
-  "modes":{
-    "白天默认":{
-      "iconSrc":"images/sun.png"
+  "modes": {
+    "白天默认": {
+      "iconSrc": "images/sun.png"
     },
-    "晚上默认":{
-      "iconSrc":"images/moon.png"
+    "晚上默认": {
+      "iconSrc": "images/moon.png"
     },
-    "白天onespace":{
-      "iconSrc":"images/sun.png"
+    "白天onespace": {
+      "iconSrc": "images/sun.png"
     },
-    "晚上无装饰":{
-      "iconSrc":"images/moon.png"
+    "晚上无装饰": {
+      "iconSrc": "images/moon.png"
     }
   },
-  "title":"Ford",
-  "baseTem":5000
+  "title": "Ford",
+  "baseTem": 5000
 }

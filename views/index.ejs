@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-      <link rel='stylesheet' href='stylesheets/style.css'  />
-      <link rel="stylesheet" href="bss.css" />
-     <!-- <script src="js/debugUtil.js"></script>-->
-      <script type="application/json" id="cfg"><%- JData%></script>
-      <script src="js/base.js"></script>
-      <script src="js/BGL.js"></script>
-      <script src="js/bgl.util.js"></script>
-  </head>
-  <body ng-app="br" ng-controller="bannerController">
+<head>
+    <title><%= model.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <link rel='stylesheet' href='stylesheets/style.css'/>
+    <link rel="stylesheet" href="stylesheets/angular-csp.css"/>
+    <link rel="stylesheet" href="bss.css"/>
+    <script type="application/json" id="cfg"><%- model.JData %></script>
+    <!-- <script src="js/debugUtil.js"></script>-->
 
-  <div id="shadow" ng-show="waiting">
+</head>
+<body ng-app="br" ng-controller="bannerController">
+<input type="hidden" id="isMobile" value="<%- useragent.isMobile ? 1 : '' %>">
+<div id="shadow" ng-show="waiting">
     <div></div>
-  </div>
-  <menu>
-      <drop items="scenes" title="位置选择" role="scene" icon-src="images/location.png"></drop>
-      <drop items="modes"  title="环境模式" role="mode" icon-src="images/sun.png"></drop>
-      <drop items="states" title="灯组状态" role="state" icon-src="images/modle1.png"></drop>
-      <multi-range items="lgNames" title="整体亮度" icon-src="images/light.png" role="lum" value="0" max="100" min="0" step="1" unit="%"></multi-range>
-      <multi-range items="lgNames" title="整体色温" icon-src="images/tem.png" role="tem" value="3000" max="8000" min="2500" step="100" unit="K"></multi-range>
-    </menu>
-  <div ng-show="covering">
-      <img src="images/entry_title.jpg" class="cover">
-      <img src="images/entry.jpg" class="cover">
-  </div>
-  <canvas id="glcvs"></canvas>
-  <script src="js/angular/angular.js"></script>
-  <script src="js/bin/ng.js"></script>
-  <link rel="stylesheet" src="stylesheets/angular-csp.css">
-  </body>
+</div>
+<menu>
+    <drop items="scenes" title="位置选择" role="scene" icon-src="images/location.png"></drop>
+    <drop items="modes" title="环境模式" role="mode" icon-src="images/sun.png"></drop>
+    <drop items="states" title="灯组状态" role="state" icon-src="images/modle1.png"></drop>
+    <multi-range items="lgNames" title="整体亮度" icon-src="images/light.png" role="lum" value="0" max="100" min="0"
+                 step="1" unit="%"></multi-range>
+    <multi-range items="lgNames" title="整体色温" icon-src="images/tem.png" role="tem" value="3000" max="8000" min="2500"
+                 step="100" unit="K"></multi-range>
+</menu>
+<div ng-show="covering">
+    <img src="images/entry_title.jpg" class="cover">
+    <img src="images/entry.jpg" class="cover">
+</div>
+<canvas id="glcvs"></canvas>
+
+<% if(compress){ %>
+<script src="js/bin/bgl.min.js"></script>
+<script src="js/angular/angular.min.js"></script>
+<script src="js/bin/ng.min.js"></script>
+<% }else { %>
+<script src="js/base.js"></script>
+<script src="js/BGL.js"></script>
+<script src="js/bgl.util.js"></script>
+<script src="js/angular/angular.js"></script>
+<script src="js/bin/ng.js"></script>
+<% } %>
+
+
+
+
+</body>
 </html>

@@ -1,9 +1,10 @@
-(function(){
-  function objForEach(obj,f){
-    for(var i= 0,names=Object.getOwnPropertyNames(obj),name=names[0];name;name=names[++i])
-      f.apply(obj,[name,obj[name]]);
+(function () {
+  function objForEach(obj, f) {
+    for (var i = 0, names = Object.getOwnPropertyNames(obj), name = names[0]; name; name = names[++i])
+      f.apply(obj, [name, obj[name]]);
   }
-  var arr= {
+
+  var arr = {
     add: function (arr, item) {
       if (arr.indexOf(item) == -1)arr.push(item);
       else return false;
@@ -49,39 +50,41 @@
       return !!array.splice(i + 1, 0, item);
     }
   };
-  Array.prototype.add=function(item){
-    return arr.add(this,item);
+  Array.prototype.add = function (item) {
+    return arr.add(this, item);
   };
-  Array.prototype.remove=function(item){return arr.remove(this,item)};
-  String.prototype.format=function () {
+  Array.prototype.remove = function (item) {
+    return arr.remove(this, item)
+  };
+  String.prototype.format = function () {
     var res = arguments;
-    return this.replace(/\{(\d+?)\}/g, function (a,index) {
-      var value=res[index];
-      return value==undefined? a:value;
+    return this.replace(/\{(\d+?)\}/g, function (a, index) {
+      var value = res[index];
+      return value == undefined ? a : value;
     });
   };
   objForEach({
-    on :function (evtName, handler) {
-      if (typeof evtName == "string" && evtName && typeof handler == "function"){
+    on: function (evtName, handler) {
+      if (typeof evtName == "string" && evtName && typeof handler == "function") {
         var cbs, hs;
-        if (!this.hasOwnProperty('_callbacks'))this._callbacks = cbs ={};
+        if (!this.hasOwnProperty('_callbacks'))this._callbacks = cbs = {};
         else cbs = this._callbacks;
-        if (!(hs=cbs[evtName]))hs=cbs[evtName] = [];
-        arr.add(hs,handler);
+        if (!(hs = cbs[evtName]))hs = cbs[evtName] = [];
+        arr.add(hs, handler);
       }
       return this;
     },
-    emit:(function(){
-      var emitings=[];
+    emit: (function () {
+      var emitings = [];
       return function (evtName, argArray, thisObj) {
-        var cbs = this._callbacks, hs, r,nhs;
+        var cbs = this._callbacks, hs, r, nhs;
         if (!cbs)return 0;
         hs = cbs[evtName];
-        if (!hs ||!emitings.add(hs))return false;
-        if (!argArray)argArray =[];
+        if (!hs || !emitings.add(hs))return false;
+        if (!argArray)argArray = [];
         else if (!(argArray instanceof Array)) argArray = [argArray];
         thisObj = thisObj || this;
-        nhs=cbs[evtName] = hs.filter(function (call) {
+        nhs = cbs[evtName] = hs.filter(function (call) {
           r = call.apply(thisObj, argArray);
           return r != -1;
         });
@@ -89,31 +92,33 @@
         return nhs.length;
       }
     })(),
-      listening:function(evtName){
-      var hs=this.listeners(evtName);
+    listening: function (evtName) {
+      var hs = this.listeners(evtName);
       return hs && hs.length;
     },
-    listeners:function(evtName){
-      var cbs,hs;
-      return this.hasOwnProperty('_callbacks')&& (cbs=this._callbacks) && (hs=cbs[evtName])? hs:null;
+    listeners: function (evtName) {
+      var cbs, hs;
+      return this.hasOwnProperty('_callbacks') && (cbs = this._callbacks) && (hs = cbs[evtName]) ? hs : null;
     },
-    off:function(evtName,handler){
-      var cbs,hs;
-      if((cbs=this._callbacks)&&(hs=cbs[evtName])&&hs){
-        if(handler) arr.remove(hs,handler);
+    off: function (evtName, handler) {
+      var cbs, hs;
+      if ((cbs = this._callbacks) && (hs = cbs[evtName]) && hs) {
+        if (handler) arr.remove(hs, handler);
         else delete cbs[evtName];
       }
       return this;
     },
-    once:function(evtName,handler){
-      if(typeof handler== "function"){
-        this.on(evtName,function(){
-          handler.apply(this,arguments);
+    once: function (evtName, handler) {
+      if (typeof handler == "function") {
+        this.on(evtName, function () {
+          handler.apply(this, arguments);
           return -1;
         });
-      }return this;
-    }},function(name,f){
-    Object.prototype[name]=f;
+      }
+      return this;
+    }
+  }, function (name, f) {
+    Object.prototype[name] = f;
   });
 
   var bgl = {
@@ -246,7 +251,7 @@
       this.state._geometry = geo;
     },
     get curGeometry() {
-      return  this.state._geometry;
+      return this.state._geometry;
     },
     get curCamera() {
       return this.curScene.camera;
@@ -321,7 +326,7 @@
     add: function (scene) {
       if (scene instanceof bgl.model.Scene) {
         if (scene.order == -1) scene.order = this.scenes.length;
-        var b = arr.ascAdd(this.scenes,scene, 'order');
+        var b = arr.ascAdd(this.scenes, scene, 'order');
         if (b) {
           scene.cfg = this;
           if (!this.curScene && !this.nextScene)
@@ -421,11 +426,11 @@
             s = -s;
           e[0] = 1;
           e[4] = 0;
-          e[ 8] = 0;
+          e[8] = 0;
           e[12] = 0;
           e[1] = 0;
           e[5] = c;
-          e[ 9] = -s;
+          e[9] = -s;
           e[13] = 0;
           e[2] = 0;
           e[6] = s;
@@ -440,11 +445,11 @@
             s = -s;
           e[0] = c;
           e[4] = 0;
-          e[ 8] = s;
+          e[8] = s;
           e[12] = 0;
           e[1] = 0;
           e[5] = 1;
-          e[ 9] = 0;
+          e[9] = 0;
           e[13] = 0;
           e[2] = -s;
           e[6] = 0;
@@ -459,11 +464,11 @@
             s = -s;
           e[0] = c;
           e[4] = -s;
-          e[ 8] = 0;
+          e[8] = 0;
           e[12] = 0;
           e[1] = s;
           e[5] = c;
-          e[ 9] = 0;
+          e[9] = 0;
           e[13] = 0;
           e[2] = 0;
           e[6] = 0;
@@ -488,16 +493,16 @@
           xs = x * s;
           ys = y * s;
           zs = z * s;
-          e[ 0] = x * x * nc + c;
-          e[ 1] = xy * nc + zs;
-          e[ 2] = zx * nc - ys;
-          e[ 3] = 0;
-          e[ 4] = xy * nc - zs;
-          e[ 5] = y * y * nc + c;
-          e[ 6] = yz * nc + xs;
-          e[ 7] = 0;
-          e[ 8] = zx * nc + ys;
-          e[ 9] = yz * nc - xs;
+          e[0] = x * x * nc + c;
+          e[1] = xy * nc + zs;
+          e[2] = zx * nc - ys;
+          e[3] = 0;
+          e[4] = xy * nc - zs;
+          e[5] = y * y * nc + c;
+          e[6] = yz * nc + xs;
+          e[7] = 0;
+          e[8] = zx * nc + ys;
+          e[9] = yz * nc - xs;
           e[10] = z * z * nc + c;
           e[11] = 0;
           e[12] = 0;
@@ -515,40 +520,40 @@
         inv = new Float32Array(16);
 
         inv[0] = s[5] * s[10] * s[15] - s[5] * s[11] * s[14] - s[9] * s[6] * s[15]
-          + s[9] * s[7] * s[14] + s[13] * s[6] * s[11] - s[13] * s[7] * s[10];
+        + s[9] * s[7] * s[14] + s[13] * s[6] * s[11] - s[13] * s[7] * s[10];
         inv[4] = -s[4] * s[10] * s[15] + s[4] * s[11] * s[14] + s[8] * s[6] * s[15]
-          - s[8] * s[7] * s[14] - s[12] * s[6] * s[11] + s[12] * s[7] * s[10];
+        - s[8] * s[7] * s[14] - s[12] * s[6] * s[11] + s[12] * s[7] * s[10];
         inv[8] = s[4] * s[9] * s[15] - s[4] * s[11] * s[13] - s[8] * s[5] * s[15]
-          + s[8] * s[7] * s[13] + s[12] * s[5] * s[11] - s[12] * s[7] * s[9];
+        + s[8] * s[7] * s[13] + s[12] * s[5] * s[11] - s[12] * s[7] * s[9];
         inv[12] = -s[4] * s[9] * s[14] + s[4] * s[10] * s[13] + s[8] * s[5] * s[14]
-          - s[8] * s[6] * s[13] - s[12] * s[5] * s[10] + s[12] * s[6] * s[9];
+        - s[8] * s[6] * s[13] - s[12] * s[5] * s[10] + s[12] * s[6] * s[9];
 
         inv[1] = -s[1] * s[10] * s[15] + s[1] * s[11] * s[14] + s[9] * s[2] * s[15]
-          - s[9] * s[3] * s[14] - s[13] * s[2] * s[11] + s[13] * s[3] * s[10];
+        - s[9] * s[3] * s[14] - s[13] * s[2] * s[11] + s[13] * s[3] * s[10];
         inv[5] = s[0] * s[10] * s[15] - s[0] * s[11] * s[14] - s[8] * s[2] * s[15]
-          + s[8] * s[3] * s[14] + s[12] * s[2] * s[11] - s[12] * s[3] * s[10];
+        + s[8] * s[3] * s[14] + s[12] * s[2] * s[11] - s[12] * s[3] * s[10];
         inv[9] = -s[0] * s[9] * s[15] + s[0] * s[11] * s[13] + s[8] * s[1] * s[15]
-          - s[8] * s[3] * s[13] - s[12] * s[1] * s[11] + s[12] * s[3] * s[9];
+        - s[8] * s[3] * s[13] - s[12] * s[1] * s[11] + s[12] * s[3] * s[9];
         inv[13] = s[0] * s[9] * s[14] - s[0] * s[10] * s[13] - s[8] * s[1] * s[14]
-          + s[8] * s[2] * s[13] + s[12] * s[1] * s[10] - s[12] * s[2] * s[9];
+        + s[8] * s[2] * s[13] + s[12] * s[1] * s[10] - s[12] * s[2] * s[9];
 
         inv[2] = s[1] * s[6] * s[15] - s[1] * s[7] * s[14] - s[5] * s[2] * s[15]
-          + s[5] * s[3] * s[14] + s[13] * s[2] * s[7] - s[13] * s[3] * s[6];
+        + s[5] * s[3] * s[14] + s[13] * s[2] * s[7] - s[13] * s[3] * s[6];
         inv[6] = -s[0] * s[6] * s[15] + s[0] * s[7] * s[14] + s[4] * s[2] * s[15]
-          - s[4] * s[3] * s[14] - s[12] * s[2] * s[7] + s[12] * s[3] * s[6];
+        - s[4] * s[3] * s[14] - s[12] * s[2] * s[7] + s[12] * s[3] * s[6];
         inv[10] = s[0] * s[5] * s[15] - s[0] * s[7] * s[13] - s[4] * s[1] * s[15]
-          + s[4] * s[3] * s[13] + s[12] * s[1] * s[7] - s[12] * s[3] * s[5];
+        + s[4] * s[3] * s[13] + s[12] * s[1] * s[7] - s[12] * s[3] * s[5];
         inv[14] = -s[0] * s[5] * s[14] + s[0] * s[6] * s[13] + s[4] * s[1] * s[14]
-          - s[4] * s[2] * s[13] - s[12] * s[1] * s[6] + s[12] * s[2] * s[5];
+        - s[4] * s[2] * s[13] - s[12] * s[1] * s[6] + s[12] * s[2] * s[5];
 
         inv[3] = -s[1] * s[6] * s[11] + s[1] * s[7] * s[10] + s[5] * s[2] * s[11]
-          - s[5] * s[3] * s[10] - s[9] * s[2] * s[7] + s[9] * s[3] * s[6];
+        - s[5] * s[3] * s[10] - s[9] * s[2] * s[7] + s[9] * s[3] * s[6];
         inv[7] = s[0] * s[6] * s[11] - s[0] * s[7] * s[10] - s[4] * s[2] * s[11]
-          + s[4] * s[3] * s[10] + s[8] * s[2] * s[7] - s[8] * s[3] * s[6];
+        + s[4] * s[3] * s[10] + s[8] * s[2] * s[7] - s[8] * s[3] * s[6];
         inv[11] = -s[0] * s[5] * s[11] + s[0] * s[7] * s[9] + s[4] * s[1] * s[11]
-          - s[4] * s[3] * s[9] - s[8] * s[1] * s[7] + s[8] * s[3] * s[5];
+        - s[4] * s[3] * s[9] - s[8] * s[1] * s[7] + s[8] * s[3] * s[5];
         inv[15] = s[0] * s[5] * s[10] - s[0] * s[6] * s[9] - s[4] * s[1] * s[10]
-          + s[4] * s[2] * s[9] + s[8] * s[1] * s[6] - s[8] * s[2] * s[5];
+        + s[4] * s[2] * s[9] + s[8] * s[1] * s[6] - s[8] * s[2] * s[5];
 
         det = s[0] * inv[0] + s[1] * inv[4] + s[2] * inv[8] + s[3] * inv[12];
         if (det === 0)
@@ -687,7 +692,8 @@
         out[8] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
 
         return m3;
-      }},
+      }
+    },
     Vector3: {
       setCross: function (v1, v2) {
         var ax = v1.x, ay = v1.y, az = v1.z,
@@ -698,10 +704,10 @@
   };
   (function () {
     var m = bgl.math, s = bgl.math.static, pro;
-    objForEach(m,function (name,constructor) {
+    objForEach(m, function (name, constructor) {
       pro = s[name];
       if (pro)
-        objForEach(pro,function (mname,method) {
+        objForEach(pro, function (mname, method) {
           constructor[mname] = method;
         })
     });
@@ -812,20 +818,20 @@
     },
     transpose: function () {
       var e = this.elements, t;
-      t = e[ 1];
-      e[ 1] = e[ 4];
-      e[ 4] = t;
-      t = e[ 2];
-      e[ 2] = e[ 8];
-      e[ 8] = t;
-      t = e[ 3];
-      e[ 3] = e[12];
+      t = e[1];
+      e[1] = e[4];
+      e[4] = t;
+      t = e[2];
+      e[2] = e[8];
+      e[8] = t;
+      t = e[3];
+      e[3] = e[12];
       e[12] = t;
-      t = e[ 6];
-      e[ 6] = e[ 9];
-      e[ 9] = t;
-      t = e[ 7];
-      e[ 7] = e[13];
+      t = e[6];
+      e[6] = e[9];
+      e[9] = t;
+      t = e[7];
+      e[7] = e[13];
       e[13] = t;
       t = e[11];
       e[11] = e[14];
@@ -1420,7 +1426,7 @@
       },
       get lastPointEvents() {
         var r = [], e, ps = this.pEvents, len;
-        objForEach(ps,function (name,array) {
+        objForEach(ps, function (name, array) {
           len = array.length;
           if (len == 0) delete ps[name];
           else e = array[len - 1];
@@ -1445,7 +1451,7 @@
           e.stopPropagation();
           return false;
         };
-        objForEach(handlers,function (name,f) {
+        objForEach(handlers, function (name, f) {
           if (typeof f == "function") {
             element.addEventListener(name, f.bind(pool), true);
             element.addEventListener(name, preventFun, true);
@@ -2429,7 +2435,9 @@
         c._refer = null;
       }
       this._culler.dispose();
-      objForEach(this.binders,function(key,binder){binder.dispose(cfg);});
+      objForEach(this.binders, function (key, binder) {
+        binder.dispose(cfg);
+      });
       this._geometries.forEach(f);
       this._children.forEach(f);
       this._settings = {
@@ -2578,7 +2586,7 @@
         renderOrGeo._parent = this;
         renderOrGeo._depth = this._depth + 1;
         var c = renderOrGeo.controller, scene = this.scene;
-        if (scene&&c && c._waitUpdate)scene.add(c);
+        if (scene && c && c._waitUpdate)scene.add(c);
         renderOrGeo._onscene(scene);
         this.invalid();
       }
@@ -2632,14 +2640,16 @@
       this._culler.restore(repeat);
       return this;
     },
-    _onscene:function(scene){
-      if(scene){
-        if(this.hittable)scene._detectors.add(this);
+    _onscene: function (scene) {
+      if (scene) {
+        if (this.hittable)scene._detectors.add(this);
       }
       else {
         // scene._detectors.remove(this);
       }
-      this._geometries.concat(this._children).forEach(function(c){c._onscene(scene)});
+      this._geometries.concat(this._children).forEach(function (c) {
+        c._onscene(scene)
+      });
     }
   };
   bgl.model.Camera.prototype = {
@@ -2683,7 +2693,7 @@
         _front: this._front.clone(),
         _top: this._top.clone()
       }, ss = this._states || [];
-      objForEach(this,function(name,value) {
+      objForEach(this, function (name, value) {
         if (typeof value != "object") s[name] = value;
       });
       ss.push(s);
@@ -2703,7 +2713,7 @@
         states.length = c - (repeat || 0);
         s = states.pop();
         that = this;
-        objForEach(s,function(name,value) {
+        objForEach(s, function (name, value) {
           that[name] = value;
         });
         this._states = states;
@@ -2800,7 +2810,9 @@
       var f = function (o) {
         o.dispose(cfg);
       }, c = this._controller;
-      objForEach(this.binders,function(n,b){b.dispose(cfg)});
+      objForEach(this.binders, function (n, b) {
+        b.dispose(cfg)
+      });
       if (c) {
         if (c._scene)c._scene.remove(c);
         c.dispose(cfg);
@@ -2940,9 +2952,9 @@
     findBinder: function (name) {
       return this.binders[name];
     },
-    _onscene:function(scene){
-      if(scene){
-        if(this.hittable)scene._detectors.add(this);
+    _onscene: function (scene) {
+      if (scene) {
+        if (this.hittable)scene._detectors.add(this);
       }
       //  else
       //  scene._detectors.remove(this);
@@ -3007,11 +3019,11 @@
     },
     equals: function (box) {
       return (box && box._x1 == this._x1 && box._x2 == this._x2
-        && box._y1 == this._y1 && box._y2 == this._y2 && box._z1 == this._z1 && box._z2 == this._z2)
+      && box._y1 == this._y1 && box._y2 == this._y2 && box._z1 == this._z1 && box._z2 == this._z2)
     },//
     inside: function (box) {
       return (box && box._x1 <= this._x1 && box._x2 >= this._x2
-        && box._y1 <= this._y1 && box._y2 >= this._y2 && box._z1 <= this._z1 && box._z2 >= this._z2)
+      && box._y1 <= this._y1 && box._y2 >= this._y2 && box._z1 <= this._z1 && box._z2 >= this._z2)
     },//
     _resetBounds: function () {
       var c = this.center, cx = c.x, cy = c.y, cz = c.z, h = this._hh, w = this._hw, d = this._hd;
@@ -3035,7 +3047,7 @@
     _fromVecs: function (points) {
       if (!points || points.length == 0) return this.constructor.NULL;
 
-      return this._fromDataArray([arr.min(points,'x'),arr.min(points,'y'), arr.min(points,'z'), arr.max('x'), arr.max('y'), arr.max('z')]);
+      return this._fromDataArray([arr.min(points, 'x'), arr.min(points, 'y'), arr.min(points, 'z'), arr.max('x'), arr.max('y'), arr.max('z')]);
     },
     _fromDataArray: function (points) {
       if (!points || points.length == 0) return this.constructor.NULL;
@@ -3068,7 +3080,7 @@
       return this;
     },
     overlap: function (box) {
-      return(box && !(this._x2 < box._x1 || this._x1 > box._x2) && !(this._y2 < box._y1 || this._y1 > box._y2) && !(this._z2 < box._z1 || this._z1 > box._z2));
+      return (box && !(this._x2 < box._x1 || this._x1 > box._x2) && !(this._y2 < box._y1 || this._y1 > box._y2) && !(this._z2 < box._z1 || this._z1 > box._z2));
     },//
     union: function (boxOrPoints, overWrite) {
       var pts;
@@ -3082,7 +3094,7 @@
     },//
     copy: function (src, des) {
       des = des || new this.constructor();
-      objForEach(src,function(name,value) {
+      objForEach(src, function (name, value) {
         if (typeof value != "object")
           des[name] = value;
         else if (value.clone)
@@ -3099,7 +3111,7 @@
     },//
     save: function () {
       var s = {_center: this._center.clone()}, ss = (this._states || []);
-      objForEach(this,function(n,v) {
+      objForEach(this, function (n, v) {
         if (typeof v !== "object") s[n] = v;
       });
       ss.push(s);
@@ -3115,7 +3127,7 @@
         else if (repeat >= c) repeat = c - 1;
         states.length = c - (repeat || 0);
         s = states.pop();
-        objForEach(s,function(name,value) {
+        objForEach(s, function (name, value) {
           that[name] = value;
         });
         this._points = null;
@@ -3383,7 +3395,7 @@
       if (tzmin > tmin || tmin !== tmin) tmin = tzmin;
       if (tzmax < tmax || tmax !== tmax) tmax = tzmax;
       if (tmax < tmin) throw ('不该发生的事情发生了');
-      return(tmin >= 0 && tmin <= 1) || (tmax >= 0 && tmax <= 1);
+      return (tmin >= 0 && tmin <= 1) || (tmax >= 0 && tmax <= 1);
     },
     collect: function (hittable) {
       if (arguments.length == 1) {
@@ -3549,7 +3561,7 @@
         if (!fbo)this._fbo = fbo = mng.getFrameBufferObj(this);
         texture.bind(gl);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
-        objForEach(this.imgParam,function (name,value) {
+        objForEach(this.imgParam, function (name, value) {
           gl.texParameteri(gl.TEXTURE_2D, gl[name], gl[value]);
         });
         gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
@@ -3808,8 +3820,8 @@
   };
   bgl.data = {
     cubic: {
-      vertexArray: new Float32Array([ 1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1]),
-      vertexIndecies: new Uint16Array([0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 5, 0, 5, 6, 0, 6, 1, 1, 6, 7, 1, 7, 2, 7, 4, 3, 7, 3, 2, 4, 7, 6, 4, 6, 5 ]),
+      vertexArray: new Float32Array([1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1]),
+      vertexIndecies: new Uint16Array([0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 5, 0, 5, 6, 0, 6, 1, 1, 6, 7, 1, 7, 2, 7, 4, 3, 7, 3, 2, 4, 7, 6, 4, 6, 5]),
       vertexUV: new Float32Array([// Front face
         1.0, 1.0, 1.0, 1 / 3, 0.5, //v0
         -1.0, 1.0, 1.0, 0, 0.5, //v1
@@ -3837,28 +3849,28 @@
         -1.0, -1.0, 1.0, 1, .5//v23
       ]),
       uv: new Float32Array([
-          1 / 3, 0.5, //v0
+        1 / 3, 0.5, //v0
         0, 0.5, //v1
         0, 1, //v2
-          1 / 3, 1, //v3
-          1 / 3, 0, //v4
-          2 / 3, 0, //v5
-          2 / 3, 0.5,//v6
-          1 / 3, 0.5, //v7
-          2 / 3, 0.5,//v8
-          1 / 3, 0.5,//v9
-          1 / 3, 1,//v10
-          2 / 3, 1,//v11
-          2 / 3, 0.5,//12
-          2 / 3, 1,//13
+        1 / 3, 1, //v3
+        1 / 3, 0, //v4
+        2 / 3, 0, //v5
+        2 / 3, 0.5,//v6
+        1 / 3, 0.5, //v7
+        2 / 3, 0.5,//v8
+        1 / 3, 0.5,//v9
+        1 / 3, 1,//v10
+        2 / 3, 1,//v11
+        2 / 3, 0.5,//12
+        2 / 3, 1,//13
         1, 1,//14
         1, 0.5,//15
         0, 0,//v16
         0, 0.5,//v17
-          1 / 3, 0.5,//v18
-          1 / 3, 0,//v19
-          2 / 3, 0.5,
-          2 / 3, 0,
+        1 / 3, 0.5,//v18
+        1 / 3, 0,//v19
+        2 / 3, 0.5,
+        2 / 3, 0,
         1, 0,
         1, 0.5
       ]),
@@ -3927,14 +3939,15 @@
         e[i] = table[ti + i] / table[bi + i];
       return t;
     }
-  })();(function () {
+  })();
+  (function () {
     var f = function (name, obj) {
         var options = {
           enumerable: false,
           configurable: true,
           get: new Function('return this._' + name + ';'),
           set: new Function('val', ('if (isNaN(val) || val == this._{0}) return;' +
-            'this._{0} = val;this.reset();').format(name))
+          'this._{0} = val;this.reset();').format(name))
         };
         Object.defineProperty(obj, name, options);
       },
@@ -3972,5 +3985,5 @@
       }
     });
   })();
- return window.bgl=bgl;
+  return window.bgl = bgl;
 })(window);

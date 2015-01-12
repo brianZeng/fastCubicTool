@@ -393,7 +393,7 @@ bgl.GlConfig.prototype = {
     this.state._geometry = geo;
   },
   get curGeometry() {
-    return  this.state._geometry;
+    return this.state._geometry;
   },
   get curCamera() {
     return this.curScene.camera;
@@ -541,11 +541,11 @@ bgl.math.static = {
           s = -s;
         e[0] = 1;
         e[4] = 0;
-        e[ 8] = 0;
+        e[8] = 0;
         e[12] = 0;
         e[1] = 0;
         e[5] = c;
-        e[ 9] = -s;
+        e[9] = -s;
         e[13] = 0;
         e[2] = 0;
         e[6] = s;
@@ -560,11 +560,11 @@ bgl.math.static = {
           s = -s;
         e[0] = c;
         e[4] = 0;
-        e[ 8] = s;
+        e[8] = s;
         e[12] = 0;
         e[1] = 0;
         e[5] = 1;
-        e[ 9] = 0;
+        e[9] = 0;
         e[13] = 0;
         e[2] = -s;
         e[6] = 0;
@@ -579,11 +579,11 @@ bgl.math.static = {
           s = -s;
         e[0] = c;
         e[4] = -s;
-        e[ 8] = 0;
+        e[8] = 0;
         e[12] = 0;
         e[1] = s;
         e[5] = c;
-        e[ 9] = 0;
+        e[9] = 0;
         e[13] = 0;
         e[2] = 0;
         e[6] = 0;
@@ -608,16 +608,16 @@ bgl.math.static = {
         xs = x * s;
         ys = y * s;
         zs = z * s;
-        e[ 0] = x * x * nc + c;
-        e[ 1] = xy * nc + zs;
-        e[ 2] = zx * nc - ys;
-        e[ 3] = 0;
-        e[ 4] = xy * nc - zs;
-        e[ 5] = y * y * nc + c;
-        e[ 6] = yz * nc + xs;
-        e[ 7] = 0;
-        e[ 8] = zx * nc + ys;
-        e[ 9] = yz * nc - xs;
+        e[0] = x * x * nc + c;
+        e[1] = xy * nc + zs;
+        e[2] = zx * nc - ys;
+        e[3] = 0;
+        e[4] = xy * nc - zs;
+        e[5] = y * y * nc + c;
+        e[6] = yz * nc + xs;
+        e[7] = 0;
+        e[8] = zx * nc + ys;
+        e[9] = yz * nc - xs;
         e[10] = z * z * nc + c;
         e[11] = 0;
         e[12] = 0;
@@ -635,40 +635,40 @@ bgl.math.static = {
       inv = new Float32Array(16);
 
       inv[0] = s[5] * s[10] * s[15] - s[5] * s[11] * s[14] - s[9] * s[6] * s[15]
-        + s[9] * s[7] * s[14] + s[13] * s[6] * s[11] - s[13] * s[7] * s[10];
+      + s[9] * s[7] * s[14] + s[13] * s[6] * s[11] - s[13] * s[7] * s[10];
       inv[4] = -s[4] * s[10] * s[15] + s[4] * s[11] * s[14] + s[8] * s[6] * s[15]
-        - s[8] * s[7] * s[14] - s[12] * s[6] * s[11] + s[12] * s[7] * s[10];
+      - s[8] * s[7] * s[14] - s[12] * s[6] * s[11] + s[12] * s[7] * s[10];
       inv[8] = s[4] * s[9] * s[15] - s[4] * s[11] * s[13] - s[8] * s[5] * s[15]
-        + s[8] * s[7] * s[13] + s[12] * s[5] * s[11] - s[12] * s[7] * s[9];
+      + s[8] * s[7] * s[13] + s[12] * s[5] * s[11] - s[12] * s[7] * s[9];
       inv[12] = -s[4] * s[9] * s[14] + s[4] * s[10] * s[13] + s[8] * s[5] * s[14]
-        - s[8] * s[6] * s[13] - s[12] * s[5] * s[10] + s[12] * s[6] * s[9];
+      - s[8] * s[6] * s[13] - s[12] * s[5] * s[10] + s[12] * s[6] * s[9];
 
       inv[1] = -s[1] * s[10] * s[15] + s[1] * s[11] * s[14] + s[9] * s[2] * s[15]
-        - s[9] * s[3] * s[14] - s[13] * s[2] * s[11] + s[13] * s[3] * s[10];
+      - s[9] * s[3] * s[14] - s[13] * s[2] * s[11] + s[13] * s[3] * s[10];
       inv[5] = s[0] * s[10] * s[15] - s[0] * s[11] * s[14] - s[8] * s[2] * s[15]
-        + s[8] * s[3] * s[14] + s[12] * s[2] * s[11] - s[12] * s[3] * s[10];
+      + s[8] * s[3] * s[14] + s[12] * s[2] * s[11] - s[12] * s[3] * s[10];
       inv[9] = -s[0] * s[9] * s[15] + s[0] * s[11] * s[13] + s[8] * s[1] * s[15]
-        - s[8] * s[3] * s[13] - s[12] * s[1] * s[11] + s[12] * s[3] * s[9];
+      - s[8] * s[3] * s[13] - s[12] * s[1] * s[11] + s[12] * s[3] * s[9];
       inv[13] = s[0] * s[9] * s[14] - s[0] * s[10] * s[13] - s[8] * s[1] * s[14]
-        + s[8] * s[2] * s[13] + s[12] * s[1] * s[10] - s[12] * s[2] * s[9];
+      + s[8] * s[2] * s[13] + s[12] * s[1] * s[10] - s[12] * s[2] * s[9];
 
       inv[2] = s[1] * s[6] * s[15] - s[1] * s[7] * s[14] - s[5] * s[2] * s[15]
-        + s[5] * s[3] * s[14] + s[13] * s[2] * s[7] - s[13] * s[3] * s[6];
+      + s[5] * s[3] * s[14] + s[13] * s[2] * s[7] - s[13] * s[3] * s[6];
       inv[6] = -s[0] * s[6] * s[15] + s[0] * s[7] * s[14] + s[4] * s[2] * s[15]
-        - s[4] * s[3] * s[14] - s[12] * s[2] * s[7] + s[12] * s[3] * s[6];
+      - s[4] * s[3] * s[14] - s[12] * s[2] * s[7] + s[12] * s[3] * s[6];
       inv[10] = s[0] * s[5] * s[15] - s[0] * s[7] * s[13] - s[4] * s[1] * s[15]
-        + s[4] * s[3] * s[13] + s[12] * s[1] * s[7] - s[12] * s[3] * s[5];
+      + s[4] * s[3] * s[13] + s[12] * s[1] * s[7] - s[12] * s[3] * s[5];
       inv[14] = -s[0] * s[5] * s[14] + s[0] * s[6] * s[13] + s[4] * s[1] * s[14]
-        - s[4] * s[2] * s[13] - s[12] * s[1] * s[6] + s[12] * s[2] * s[5];
+      - s[4] * s[2] * s[13] - s[12] * s[1] * s[6] + s[12] * s[2] * s[5];
 
       inv[3] = -s[1] * s[6] * s[11] + s[1] * s[7] * s[10] + s[5] * s[2] * s[11]
-        - s[5] * s[3] * s[10] - s[9] * s[2] * s[7] + s[9] * s[3] * s[6];
+      - s[5] * s[3] * s[10] - s[9] * s[2] * s[7] + s[9] * s[3] * s[6];
       inv[7] = s[0] * s[6] * s[11] - s[0] * s[7] * s[10] - s[4] * s[2] * s[11]
-        + s[4] * s[3] * s[10] + s[8] * s[2] * s[7] - s[8] * s[3] * s[6];
+      + s[4] * s[3] * s[10] + s[8] * s[2] * s[7] - s[8] * s[3] * s[6];
       inv[11] = -s[0] * s[5] * s[11] + s[0] * s[7] * s[9] + s[4] * s[1] * s[11]
-        - s[4] * s[3] * s[9] - s[8] * s[1] * s[7] + s[8] * s[3] * s[5];
+      - s[4] * s[3] * s[9] - s[8] * s[1] * s[7] + s[8] * s[3] * s[5];
       inv[15] = s[0] * s[5] * s[10] - s[0] * s[6] * s[9] - s[4] * s[1] * s[10]
-        + s[4] * s[2] * s[9] + s[8] * s[1] * s[6] - s[8] * s[2] * s[5];
+      + s[4] * s[2] * s[9] + s[8] * s[1] * s[6] - s[8] * s[2] * s[5];
 
       det = s[0] * inv[0] + s[1] * inv[4] + s[2] * inv[8] + s[3] * inv[12];
       if (det === 0)
@@ -893,20 +893,20 @@ bgl.math.Matrix4.prototype = {
   },
   transpose: function () {
     var e = this.elements, t;
-    t = e[ 1];
-    e[ 1] = e[ 4];
-    e[ 4] = t;
-    t = e[ 2];
-    e[ 2] = e[ 8];
-    e[ 8] = t;
-    t = e[ 3];
-    e[ 3] = e[12];
+    t = e[1];
+    e[1] = e[4];
+    e[4] = t;
+    t = e[2];
+    e[2] = e[8];
+    e[8] = t;
+    t = e[3];
+    e[3] = e[12];
     e[12] = t;
-    t = e[ 6];
-    e[ 6] = e[ 9];
-    e[ 9] = t;
-    t = e[ 7];
-    e[ 7] = e[13];
+    t = e[6];
+    e[6] = e[9];
+    e[9] = t;
+    t = e[7];
+    e[7] = e[13];
     e[13] = t;
     t = e[11];
     e[11] = e[14];
@@ -1182,7 +1182,7 @@ bgl.animation.SimpleClock.prototype = {
     this.d = this.direction;
     this.t = this.d == 1 ? 0 : 1;
     this._stopped = false;
-    this.value=this.t*this.multiplier+this.offset;
+    this.value = this.t * this.multiplier + this.offset;
     this.waitUpdate();
     return true;
   },
@@ -1217,7 +1217,7 @@ bgl.animation.SimpleClock.prototype = {
     this._stopped = false;
     this.d = -this.direction;
     this.t = (this.d == 1 ? 0 : 1);
-    this.value=this.t*this.multiplier+this.offset;
+    this.value = this.t * this.multiplier + this.offset;
     this.waitUpdate();
     return true;
   },
@@ -1736,7 +1736,7 @@ bgl.animation.TimingFunctions = {
     click: function (e) {
     },
     mousedown: function (e) {
-      if(e.button!==2){
+      if (e.button !== 2) {
         this.add(new PointEvent(e, actionType.DOWN));
       }
     },
@@ -1746,12 +1746,12 @@ bgl.animation.TimingFunctions = {
     mousemove: function (e) {
       var cur = new PointEvent(e, actionType.MOVE),
         array = this.pEvents[cur.identifier], pre;
-      if (array && array.length > 0){
+      if (array && array.length > 0) {
         pre = array[array.length - 1];
       }
       if (!this.ignoreEvent(cur, pre))
         this.add(cur);
-      console.log(cur.event);
+
     },
     keydown: {
       fun: function (e) {
@@ -2733,7 +2733,7 @@ bgl.model.Camera.prototype = {
       _top: this._top.paste()
     }, ss = this._states || [];
     this.allOwnPros(function (value, name) {
-      if (typeof value != "object"&&name[0]=='_') s[name] = value;
+      if (typeof value != "object" && name[0] == '_') s[name] = value;
     });
     ss.push(s);
     this._states = ss;
@@ -3019,11 +3019,11 @@ bgl.cull.BoundBox.prototype = {
   },
   equals: function (box) {
     return (box && box._x1 == this._x1 && box._x2 == this._x2
-      && box._y1 == this._y1 && box._y2 == this._y2 && box._z1 == this._z1 && box._z2 == this._z2)
+    && box._y1 == this._y1 && box._y2 == this._y2 && box._z1 == this._z1 && box._z2 == this._z2)
   },//
   inside: function (box) {
     return (box && box._x1 <= this._x1 && box._x2 >= this._x2
-      && box._y1 <= this._y1 && box._y2 >= this._y2 && box._z1 <= this._z1 && box._z2 >= this._z2)
+    && box._y1 <= this._y1 && box._y2 >= this._y2 && box._z1 <= this._z1 && box._z2 >= this._z2)
   },//
   _resetBounds: function () {
     var c = this.center, cx = c.x, cy = c.y, cz = c.z, h = this._hh, w = this._hw, d = this._hd;
@@ -3063,7 +3063,7 @@ bgl.cull.BoundBox.prototype = {
     return this;
   },
   overlap: function (box) {
-    return(box && !(this._x2 < box._x1 || this._x1 > box._x2) && !(this._y2 < box._y1 || this._y1 > box._y2) && !(this._z2 < box._z1 || this._z1 > box._z2));
+    return (box && !(this._x2 < box._x1 || this._x1 > box._x2) && !(this._y2 < box._y1 || this._y1 > box._y2) && !(this._z2 < box._z1 || this._z1 > box._z2));
   },//
   union: function (boxOrPoints, overWrite) {
     var pts;
@@ -3717,8 +3717,8 @@ bgl.resource.ResourceManager.prototype = {
 };
 bgl.data = {
   cubic: {
-    vertexArray: new Float32Array([ 1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1]),
-    vertexIndecies: new Uint16Array([0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 5, 0, 5, 6, 0, 6, 1, 1, 6, 7, 1, 7, 2, 7, 4, 3, 7, 3, 2, 4, 7, 6, 4, 6, 5 ]),
+    vertexArray: new Float32Array([1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1]),
+    vertexIndecies: new Uint16Array([0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 5, 0, 5, 6, 0, 6, 1, 1, 6, 7, 1, 7, 2, 7, 4, 3, 7, 3, 2, 4, 7, 6, 4, 6, 5]),
     vertexUV: new Float32Array([// Front face
       1.0, 1.0, 1.0, 1 / 3, 0.5, //v0
       -1.0, 1.0, 1.0, 0, 0.5, //v1
@@ -3746,28 +3746,28 @@ bgl.data = {
       -1.0, -1.0, 1.0, 1, .5//v23
     ]),
     uv: new Float32Array([
-        1 / 3, 0.5, //v0
+      1 / 3, 0.5, //v0
       0, 0.5, //v1
       0, 1, //v2
-        1 / 3, 1, //v3
-        1 / 3, 0, //v4
-        2 / 3, 0, //v5
-        2 / 3, 0.5,//v6
-        1 / 3, 0.5, //v7
-        2 / 3, 0.5,//v8
-        1 / 3, 0.5,//v9
-        1 / 3, 1,//v10
-        2 / 3, 1,//v11
-        2 / 3, 0.5,//12
-        2 / 3, 1,//13
+      1 / 3, 1, //v3
+      1 / 3, 0, //v4
+      2 / 3, 0, //v5
+      2 / 3, 0.5,//v6
+      1 / 3, 0.5, //v7
+      2 / 3, 0.5,//v8
+      1 / 3, 0.5,//v9
+      1 / 3, 1,//v10
+      2 / 3, 1,//v11
+      2 / 3, 0.5,//12
+      2 / 3, 1,//13
       1, 1,//14
       1, 0.5,//15
       0, 0,//v16
       0, 0.5,//v17
-        1 / 3, 0.5,//v18
-        1 / 3, 0,//v19
-        2 / 3, 0.5,
-        2 / 3, 0,
+      1 / 3, 0.5,//v18
+      1 / 3, 0,//v19
+      2 / 3, 0.5,
+      2 / 3, 0,
       1, 0,
       1, 0.5
     ]),
@@ -3845,7 +3845,7 @@ bgl.data = {
         configurable: true,
         get: new Function('return this._' + name + ';'),
         set: new Function('val', ('if (isNaN(val) || val == this._{0}) return;' +
-          'this._{0} = val;this.reset();').format(name))
+        'this._{0} = val;this.reset();').format(name))
       };
       Object.defineProperty(obj, name, options);
     },
@@ -3938,17 +3938,17 @@ if (bgl)
       })
     };
     expoter.changeSumIntensity = function sumIntensity(sum) {
-      sum = parseInt(sum);
+      sum = Number(sum);
       if (!sum || sum <= 0) return console.warn('sumIntensity must larger than 0');
       roomBlender.findBinder('uSumIntensity').value = sum;
       roomRender.findBinder('uSumIntensity').value = sum;
       return sum;
     };
-    expoter.restoreCamera=function(){
+    expoter.restoreCamera = function () {
       var camera = roomRender.scene.camera, at = camera._at;
       camera.restore();
       camera.save();
-      expoter.adjustCanvas(null,expoter.expanded);
+      expoter.adjustCanvas(null, expoter.expanded);
     };
     expoter.reset = function (lgNum) {
       var geos = roomRender._geometries;
@@ -3992,15 +3992,18 @@ if (bgl)
     expoter.changeTem = function (index, target, base) {
       return roomRender._geometries[index].findBinder('uTemRatio').value = target <= 0 ? bgl.data.getRGBRatio(-target) : bgl.data.getTemRatio(target, base)
     };
-    Object.defineProperty(expoter, 'onmove', {set: function (f) {
-      expoter.on('move', f);
-    }});
+    Object.defineProperty(expoter, 'onmove', {
+      set: function (f) {
+        expoter.on('move', f);
+      }
+    });
     var shaders = option.shaders || {
-      roomVS: 'precision mediump float;attribute vec3 aVertex;attribute vec2 aTexCoord;uniform mat4 uMVPMatrix;varying vec2 vTexCoord;void main(){gl_Position=vec4(aVertex,1.0)*uMVPMatrix;vTexCoord=aTexCoord;}',
-      roomFS: 'precision highp float;varying vec2 vTexCoord;uniform sampler2D sEnv0;uniform float uIntensity;uniform float uSumIntensity;uniform mat3 uRGBtoXYZ;uniform mat3 uXYZtoRGB;uniform vec3 uTemRatio;float YRatio(vec3 c0,vec3 xyz){  return (c0*uRGBtoXYZ).y/xyz.y;}vec3 RGBtoXYZ(vec3 rgb){    vec3 xyz=rgb*uTemRatio*uRGBtoXYZ;	return xyz*YRatio(rgb,xyz)*uIntensity;}void main(){vec3 c=RGBtoXYZ(texture2D(sEnv0,vTexCoord).rgb);gl_FragColor=vec4(c*uXYZtoRGB,1.0/uSumIntensity);}', blendVS: 'precision mediump float;attribute vec2 aTexCoord;varying vec2 vTexCoord;void main(){gl_Position=vec4(aTexCoord,0.0,1.0);vTexCoord=vec2(aTexCoord.x*0.5+0.5,aTexCoord.y*0.5+0.5);}',
-      blendFS: 'precision highp float;uniform vec4 uCalParam;uniform mat3 uRGBtoXYZ;uniform mat3 uXYZtoRGB;varying vec2 vTexCoord;uniform sampler2D sBuffer;uniform float uSumIntensity;vec3 Reinhard(vec3 xyz,float A, float B){    vec3 res=vec3(0.0);    res.y=xyz.y* A;	res.y=res.y *(1.0+ res.y/B)/(1.0+res.y);	float r=res.y/xyz.y;	res.x=xyz.x*r;	res.z=xyz.z*r;	return res;}vec3 XYZtoRGB(vec3 xyz){ return xyz*uXYZtoRGB;}void main(){ vec3 sumXYZ=texture2D(sBuffer,vTexCoord).rgb*uSumIntensity*uRGBtoXYZ; vec3 res=Reinhard(sumXYZ,uCalParam[0],uCalParam[1]); res=XYZtoRGB(res); gl_FragColor=vec4(res,1.0);}'
+        roomVS: 'precision mediump float;attribute vec3 aVertex;attribute vec2 aTexCoord;uniform mat4 uMVPMatrix;varying vec2 vTexCoord;void main(){gl_Position=vec4(aVertex,1.0)*uMVPMatrix;vTexCoord=aTexCoord;}',
+        roomFS: 'precision highp float;varying vec2 vTexCoord;uniform sampler2D sEnv0;uniform float uIntensity;uniform float uSumIntensity;uniform mat3 uRGBtoXYZ;uniform mat3 uXYZtoRGB;uniform vec3 uTemRatio;float YRatio(vec3 c0,vec3 xyz){  return (c0*uRGBtoXYZ).y/xyz.y;}vec3 RGBtoXYZ(vec3 rgb){    vec3 xyz=rgb*uTemRatio*uRGBtoXYZ;	return xyz*YRatio(rgb,xyz)*uIntensity;}void main(){vec3 c=RGBtoXYZ(texture2D(sEnv0,vTexCoord).rgb);gl_FragColor=vec4(c*uXYZtoRGB,1.0/uSumIntensity);}',
+        blendVS: 'precision mediump float;attribute vec2 aTexCoord;varying vec2 vTexCoord;void main(){gl_Position=vec4(aTexCoord,0.0,1.0);vTexCoord=vec2(aTexCoord.x*0.5+0.5,aTexCoord.y*0.5+0.5);}',
+        blendFS: 'precision highp float;uniform vec4 uCalParam;uniform mat3 uRGBtoXYZ;uniform mat3 uXYZtoRGB;varying vec2 vTexCoord;uniform sampler2D sBuffer;uniform float uSumIntensity;vec3 Reinhard(vec3 xyz,float A, float B){    vec3 res=vec3(0.0);    res.y=xyz.y* A;	res.y=res.y *(1.0+ res.y/B)/(1.0+res.y);	float r=res.y/xyz.y;	res.x=xyz.x*r;	res.z=xyz.z*r;	return res;}vec3 XYZtoRGB(vec3 xyz){ return xyz*uXYZtoRGB;}void main(){ vec3 sumXYZ=texture2D(sBuffer,vTexCoord).rgb*uSumIntensity*uRGBtoXYZ; vec3 res=Reinhard(sumXYZ,uCalParam[0],uCalParam[1]); res=XYZtoRGB(res); gl_FragColor=vec4(res,1.0);}'
 
-    }, config = {
+      }, config = {
       rootRender: function (rootRender) {
         rootRender.addBinder(function (gl, cfg) {
           cfg.glClear(true);
@@ -4009,7 +4012,7 @@ if (bgl)
           var clock = new bgl.animation.SimpleClock(40, 1, 1, 0, null, true);
           clock.ontick = function (ov, timeline) {
             //timeline.scene.camera.orient((ov - clock.value));
-             timeline.scene.camera.rotate(Math.sin(clock.value-ov)*360,0,1,0);
+            timeline.scene.camera.rotate(Math.sin(clock.value - ov) * 360, 0, 1, 0);
           };
           expoter.autoPlay = function (dur) {
             if (!clock._stopped)return;
@@ -4073,9 +4076,11 @@ if (bgl)
             gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
           }, 'buffer');
         blender.add(new bgl.model.Geometry([0, 1, 2, 0, 2, 3]));
-        Object.defineProperty(expoter, 'blender', {get: function () {
-          return blender;
-        }});
+        Object.defineProperty(expoter, 'blender', {
+          get: function () {
+            return blender;
+          }
+        });
         roomBlender = blender;
         expoter.blender = blender;
         return blender;
@@ -4098,7 +4103,7 @@ if (bgl)
       },
       camera: function (camera) {
         camera.far = 5;
-        camera.fovy=30;
+        camera.fovy = 30;
         camera.move = function (dir) {
           var d = this.to, pos = 0.02, dis;
           switch (dir) {
@@ -4119,9 +4124,9 @@ if (bgl)
             expoter.emit('move', [camera]);
           }
         };
-        camera.rotate(180,0,1,0);
-        camera.translate(0,0,0.3);
-      //  camera.rotate(10,1,0,0);
+        camera.rotate(180, 0, 1, 0);
+        camera.translate(0, 0, 0.3);
+        //  camera.rotate(10,1,0,0);
         camera.save();
       }
     };
@@ -4138,9 +4143,9 @@ if (bgl)
           this.shouldClear = true;
           var t1 = touches[0], t2 = touches[1], x1 = t1.dx, x2 = t2.dx, y1 = t1.dy, y2 = t2.dy;
           if (x1 < 0 && x2 < 0) return cfg.curCamera.move('right');
-          else if (x2 > 0 && x1 > 0)return  cfg.curCamera.move('left');
+          else if (x2 > 0 && x1 > 0)return cfg.curCamera.move('left');
           if (y1 < 0 && y2 < 0) return cfg.curCamera.move('down');
-          else if (y2 > 0 && y1 > 0) return  cfg.curCamera.move('up');
+          else if (y2 > 0 && y1 > 0) return cfg.curCamera.move('up');
           if (t1.event == t2.event && t1.eventType == 'drag') {
             var lt = t1.clientX < t2.clientX ? t1 : t2, rt = lt == t1 ? t2 : t1;
             var dt = t1.clientY > t2.clientY ? t1 : t2, ut = dt == t1 ? t2 : t1;
@@ -4203,11 +4208,13 @@ if (bgl)
       rootRender.add(config.roomBlender(gl));
       config.eventPool(cfg.eventPool);
       config.camera(scene.camera);
-      expoter.camera=scene.camera;
+      expoter.camera = scene.camera;
       expoter.adjustCanvas(canvas, false);
-      Object.defineProperty(expoter, 'onupdate', {set: function (f) {
-        cfg.on('update', f)
-      }});
+      Object.defineProperty(expoter, 'onupdate', {
+        set: function (f) {
+          cfg.on('update', f)
+        }
+      });
       cfg.run();
     }
 

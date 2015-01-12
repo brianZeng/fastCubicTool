@@ -114,7 +114,7 @@ bgl.GlConfig.prototype = {
     this.state._geometry = geo;
   },
   get curGeometry() {
-    return  this.state._geometry;
+    return this.state._geometry;
   },
   get curCamera() {
     return this.curScene.camera;
@@ -262,11 +262,11 @@ bgl.math.static = {
           s = -s;
         e[0] = 1;
         e[4] = 0;
-        e[ 8] = 0;
+        e[8] = 0;
         e[12] = 0;
         e[1] = 0;
         e[5] = c;
-        e[ 9] = -s;
+        e[9] = -s;
         e[13] = 0;
         e[2] = 0;
         e[6] = s;
@@ -281,11 +281,11 @@ bgl.math.static = {
           s = -s;
         e[0] = c;
         e[4] = 0;
-        e[ 8] = s;
+        e[8] = s;
         e[12] = 0;
         e[1] = 0;
         e[5] = 1;
-        e[ 9] = 0;
+        e[9] = 0;
         e[13] = 0;
         e[2] = -s;
         e[6] = 0;
@@ -300,11 +300,11 @@ bgl.math.static = {
           s = -s;
         e[0] = c;
         e[4] = -s;
-        e[ 8] = 0;
+        e[8] = 0;
         e[12] = 0;
         e[1] = s;
         e[5] = c;
-        e[ 9] = 0;
+        e[9] = 0;
         e[13] = 0;
         e[2] = 0;
         e[6] = 0;
@@ -329,16 +329,16 @@ bgl.math.static = {
         xs = x * s;
         ys = y * s;
         zs = z * s;
-        e[ 0] = x * x * nc + c;
-        e[ 1] = xy * nc + zs;
-        e[ 2] = zx * nc - ys;
-        e[ 3] = 0;
-        e[ 4] = xy * nc - zs;
-        e[ 5] = y * y * nc + c;
-        e[ 6] = yz * nc + xs;
-        e[ 7] = 0;
-        e[ 8] = zx * nc + ys;
-        e[ 9] = yz * nc - xs;
+        e[0] = x * x * nc + c;
+        e[1] = xy * nc + zs;
+        e[2] = zx * nc - ys;
+        e[3] = 0;
+        e[4] = xy * nc - zs;
+        e[5] = y * y * nc + c;
+        e[6] = yz * nc + xs;
+        e[7] = 0;
+        e[8] = zx * nc + ys;
+        e[9] = yz * nc - xs;
         e[10] = z * z * nc + c;
         e[11] = 0;
         e[12] = 0;
@@ -356,40 +356,40 @@ bgl.math.static = {
       inv = new Float32Array(16);
 
       inv[0] = s[5] * s[10] * s[15] - s[5] * s[11] * s[14] - s[9] * s[6] * s[15]
-        + s[9] * s[7] * s[14] + s[13] * s[6] * s[11] - s[13] * s[7] * s[10];
+      + s[9] * s[7] * s[14] + s[13] * s[6] * s[11] - s[13] * s[7] * s[10];
       inv[4] = -s[4] * s[10] * s[15] + s[4] * s[11] * s[14] + s[8] * s[6] * s[15]
-        - s[8] * s[7] * s[14] - s[12] * s[6] * s[11] + s[12] * s[7] * s[10];
+      - s[8] * s[7] * s[14] - s[12] * s[6] * s[11] + s[12] * s[7] * s[10];
       inv[8] = s[4] * s[9] * s[15] - s[4] * s[11] * s[13] - s[8] * s[5] * s[15]
-        + s[8] * s[7] * s[13] + s[12] * s[5] * s[11] - s[12] * s[7] * s[9];
+      + s[8] * s[7] * s[13] + s[12] * s[5] * s[11] - s[12] * s[7] * s[9];
       inv[12] = -s[4] * s[9] * s[14] + s[4] * s[10] * s[13] + s[8] * s[5] * s[14]
-        - s[8] * s[6] * s[13] - s[12] * s[5] * s[10] + s[12] * s[6] * s[9];
+      - s[8] * s[6] * s[13] - s[12] * s[5] * s[10] + s[12] * s[6] * s[9];
 
       inv[1] = -s[1] * s[10] * s[15] + s[1] * s[11] * s[14] + s[9] * s[2] * s[15]
-        - s[9] * s[3] * s[14] - s[13] * s[2] * s[11] + s[13] * s[3] * s[10];
+      - s[9] * s[3] * s[14] - s[13] * s[2] * s[11] + s[13] * s[3] * s[10];
       inv[5] = s[0] * s[10] * s[15] - s[0] * s[11] * s[14] - s[8] * s[2] * s[15]
-        + s[8] * s[3] * s[14] + s[12] * s[2] * s[11] - s[12] * s[3] * s[10];
+      + s[8] * s[3] * s[14] + s[12] * s[2] * s[11] - s[12] * s[3] * s[10];
       inv[9] = -s[0] * s[9] * s[15] + s[0] * s[11] * s[13] + s[8] * s[1] * s[15]
-        - s[8] * s[3] * s[13] - s[12] * s[1] * s[11] + s[12] * s[3] * s[9];
+      - s[8] * s[3] * s[13] - s[12] * s[1] * s[11] + s[12] * s[3] * s[9];
       inv[13] = s[0] * s[9] * s[14] - s[0] * s[10] * s[13] - s[8] * s[1] * s[14]
-        + s[8] * s[2] * s[13] + s[12] * s[1] * s[10] - s[12] * s[2] * s[9];
+      + s[8] * s[2] * s[13] + s[12] * s[1] * s[10] - s[12] * s[2] * s[9];
 
       inv[2] = s[1] * s[6] * s[15] - s[1] * s[7] * s[14] - s[5] * s[2] * s[15]
-        + s[5] * s[3] * s[14] + s[13] * s[2] * s[7] - s[13] * s[3] * s[6];
+      + s[5] * s[3] * s[14] + s[13] * s[2] * s[7] - s[13] * s[3] * s[6];
       inv[6] = -s[0] * s[6] * s[15] + s[0] * s[7] * s[14] + s[4] * s[2] * s[15]
-        - s[4] * s[3] * s[14] - s[12] * s[2] * s[7] + s[12] * s[3] * s[6];
+      - s[4] * s[3] * s[14] - s[12] * s[2] * s[7] + s[12] * s[3] * s[6];
       inv[10] = s[0] * s[5] * s[15] - s[0] * s[7] * s[13] - s[4] * s[1] * s[15]
-        + s[4] * s[3] * s[13] + s[12] * s[1] * s[7] - s[12] * s[3] * s[5];
+      + s[4] * s[3] * s[13] + s[12] * s[1] * s[7] - s[12] * s[3] * s[5];
       inv[14] = -s[0] * s[5] * s[14] + s[0] * s[6] * s[13] + s[4] * s[1] * s[14]
-        - s[4] * s[2] * s[13] - s[12] * s[1] * s[6] + s[12] * s[2] * s[5];
+      - s[4] * s[2] * s[13] - s[12] * s[1] * s[6] + s[12] * s[2] * s[5];
 
       inv[3] = -s[1] * s[6] * s[11] + s[1] * s[7] * s[10] + s[5] * s[2] * s[11]
-        - s[5] * s[3] * s[10] - s[9] * s[2] * s[7] + s[9] * s[3] * s[6];
+      - s[5] * s[3] * s[10] - s[9] * s[2] * s[7] + s[9] * s[3] * s[6];
       inv[7] = s[0] * s[6] * s[11] - s[0] * s[7] * s[10] - s[4] * s[2] * s[11]
-        + s[4] * s[3] * s[10] + s[8] * s[2] * s[7] - s[8] * s[3] * s[6];
+      + s[4] * s[3] * s[10] + s[8] * s[2] * s[7] - s[8] * s[3] * s[6];
       inv[11] = -s[0] * s[5] * s[11] + s[0] * s[7] * s[9] + s[4] * s[1] * s[11]
-        - s[4] * s[3] * s[9] - s[8] * s[1] * s[7] + s[8] * s[3] * s[5];
+      - s[4] * s[3] * s[9] - s[8] * s[1] * s[7] + s[8] * s[3] * s[5];
       inv[15] = s[0] * s[5] * s[10] - s[0] * s[6] * s[9] - s[4] * s[1] * s[10]
-        + s[4] * s[2] * s[9] + s[8] * s[1] * s[6] - s[8] * s[2] * s[5];
+      + s[4] * s[2] * s[9] + s[8] * s[1] * s[6] - s[8] * s[2] * s[5];
 
       det = s[0] * inv[0] + s[1] * inv[4] + s[2] * inv[8] + s[3] * inv[12];
       if (det === 0)
@@ -614,20 +614,20 @@ bgl.math.Matrix4.prototype = {
   },
   transpose: function () {
     var e = this.elements, t;
-    t = e[ 1];
-    e[ 1] = e[ 4];
-    e[ 4] = t;
-    t = e[ 2];
-    e[ 2] = e[ 8];
-    e[ 8] = t;
-    t = e[ 3];
-    e[ 3] = e[12];
+    t = e[1];
+    e[1] = e[4];
+    e[4] = t;
+    t = e[2];
+    e[2] = e[8];
+    e[8] = t;
+    t = e[3];
+    e[3] = e[12];
     e[12] = t;
-    t = e[ 6];
-    e[ 6] = e[ 9];
-    e[ 9] = t;
-    t = e[ 7];
-    e[ 7] = e[13];
+    t = e[6];
+    e[6] = e[9];
+    e[9] = t;
+    t = e[7];
+    e[7] = e[13];
     e[13] = t;
     t = e[11];
     e[11] = e[14];
@@ -903,7 +903,7 @@ bgl.animation.SimpleClock.prototype = {
     this.d = this.direction;
     this.t = this.d == 1 ? 0 : 1;
     this._stopped = false;
-    this.value=this.t*this.multiplier+this.offset;
+    this.value = this.t * this.multiplier + this.offset;
     this.waitUpdate();
     return true;
   },
@@ -938,7 +938,7 @@ bgl.animation.SimpleClock.prototype = {
     this._stopped = false;
     this.d = -this.direction;
     this.t = (this.d == 1 ? 0 : 1);
-    this.value=this.t*this.multiplier+this.offset;
+    this.value = this.t * this.multiplier + this.offset;
     this.waitUpdate();
     return true;
   },
@@ -1457,7 +1457,7 @@ bgl.animation.TimingFunctions = {
     click: function (e) {
     },
     mousedown: function (e) {
-      if(e.button!==2){
+      if (e.button !== 2) {
         this.add(new PointEvent(e, actionType.DOWN));
       }
     },
@@ -1467,7 +1467,7 @@ bgl.animation.TimingFunctions = {
     mousemove: function (e) {
       var cur = new PointEvent(e, actionType.MOVE),
         array = this.pEvents[cur.identifier], pre;
-      if (array && array.length > 0){
+      if (array && array.length > 0) {
         pre = array[array.length - 1];
       }
       if (!this.ignoreEvent(cur, pre))
@@ -2454,7 +2454,7 @@ bgl.model.Camera.prototype = {
       _top: this._top.paste()
     }, ss = this._states || [];
     this.allOwnPros(function (value, name) {
-      if (typeof value != "object"&&name[0]=='_') s[name] = value;
+      if (typeof value != "object" && name[0] == '_') s[name] = value;
     });
     ss.push(s);
     this._states = ss;
@@ -2740,11 +2740,11 @@ bgl.cull.BoundBox.prototype = {
   },
   equals: function (box) {
     return (box && box._x1 == this._x1 && box._x2 == this._x2
-      && box._y1 == this._y1 && box._y2 == this._y2 && box._z1 == this._z1 && box._z2 == this._z2)
+    && box._y1 == this._y1 && box._y2 == this._y2 && box._z1 == this._z1 && box._z2 == this._z2)
   },//
   inside: function (box) {
     return (box && box._x1 <= this._x1 && box._x2 >= this._x2
-      && box._y1 <= this._y1 && box._y2 >= this._y2 && box._z1 <= this._z1 && box._z2 >= this._z2)
+    && box._y1 <= this._y1 && box._y2 >= this._y2 && box._z1 <= this._z1 && box._z2 >= this._z2)
   },//
   _resetBounds: function () {
     var c = this.center, cx = c.x, cy = c.y, cz = c.z, h = this._hh, w = this._hw, d = this._hd;
@@ -2784,7 +2784,7 @@ bgl.cull.BoundBox.prototype = {
     return this;
   },
   overlap: function (box) {
-    return(box && !(this._x2 < box._x1 || this._x1 > box._x2) && !(this._y2 < box._y1 || this._y1 > box._y2) && !(this._z2 < box._z1 || this._z1 > box._z2));
+    return (box && !(this._x2 < box._x1 || this._x1 > box._x2) && !(this._y2 < box._y1 || this._y1 > box._y2) && !(this._z2 < box._z1 || this._z1 > box._z2));
   },//
   union: function (boxOrPoints, overWrite) {
     var pts;
@@ -3438,8 +3438,8 @@ bgl.resource.ResourceManager.prototype = {
 };
 bgl.data = {
   cubic: {
-    vertexArray: new Float32Array([ 1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1]),
-    vertexIndecies: new Uint16Array([0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 5, 0, 5, 6, 0, 6, 1, 1, 6, 7, 1, 7, 2, 7, 4, 3, 7, 3, 2, 4, 7, 6, 4, 6, 5 ]),
+    vertexArray: new Float32Array([1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1]),
+    vertexIndecies: new Uint16Array([0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 5, 0, 5, 6, 0, 6, 1, 1, 6, 7, 1, 7, 2, 7, 4, 3, 7, 3, 2, 4, 7, 6, 4, 6, 5]),
     vertexUV: new Float32Array([// Front face
       1.0, 1.0, 1.0, 1 / 3, 0.5, //v0
       -1.0, 1.0, 1.0, 0, 0.5, //v1
@@ -3467,28 +3467,28 @@ bgl.data = {
       -1.0, -1.0, 1.0, 1, .5//v23
     ]),
     uv: new Float32Array([
-        1 / 3, 0.5, //v0
+      1 / 3, 0.5, //v0
       0, 0.5, //v1
       0, 1, //v2
-        1 / 3, 1, //v3
-        1 / 3, 0, //v4
-        2 / 3, 0, //v5
-        2 / 3, 0.5,//v6
-        1 / 3, 0.5, //v7
-        2 / 3, 0.5,//v8
-        1 / 3, 0.5,//v9
-        1 / 3, 1,//v10
-        2 / 3, 1,//v11
-        2 / 3, 0.5,//12
-        2 / 3, 1,//13
+      1 / 3, 1, //v3
+      1 / 3, 0, //v4
+      2 / 3, 0, //v5
+      2 / 3, 0.5,//v6
+      1 / 3, 0.5, //v7
+      2 / 3, 0.5,//v8
+      1 / 3, 0.5,//v9
+      1 / 3, 1,//v10
+      2 / 3, 1,//v11
+      2 / 3, 0.5,//12
+      2 / 3, 1,//13
       1, 1,//14
       1, 0.5,//15
       0, 0,//v16
       0, 0.5,//v17
-        1 / 3, 0.5,//v18
-        1 / 3, 0,//v19
-        2 / 3, 0.5,
-        2 / 3, 0,
+      1 / 3, 0.5,//v18
+      1 / 3, 0,//v19
+      2 / 3, 0.5,
+      2 / 3, 0,
       1, 0,
       1, 0.5
     ]),
@@ -3566,7 +3566,7 @@ bgl.data = {
         configurable: true,
         get: new Function('return this._' + name + ';'),
         set: new Function('val', ('if (isNaN(val) || val == this._{0}) return;' +
-          'this._{0} = val;this.reset();').format(name))
+        'this._{0} = val;this.reset();').format(name))
       };
       Object.defineProperty(obj, name, options);
     },

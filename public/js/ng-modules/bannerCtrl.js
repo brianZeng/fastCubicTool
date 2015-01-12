@@ -25,7 +25,7 @@ angular.module('br').
         $scope.$broadcast('dropTitleChange', {selected: mode.name, role: 'mode', mode: mode});
         $scope.chooseState(findByName(mode.states, mode.defState) || mode.states[0]);
         switchLoading(true);
-        imgFactory.$get(mode.res).then(function (imgs) {
+        imgFactory.get(mode.res).then(function (imgs) {
           glFactory.imgs = imgs;
           switchLoading(false);
           $scope.covering = 0;

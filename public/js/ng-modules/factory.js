@@ -3,65 +3,78 @@
  */
 
 angular.module('br').
-  factory('imgFactory',['$q','glFactory','$http',function($q,glFactory,$http){
-        var imgChannel={},baseAddr='resources\\',ctx=document.createElement('canvas').getContext('2d'),maxImgSize=glFactory.MAX_TEXTURE_SIZE;
-       if(console.postInfo)
-        console.postInfo=function(tag,info){
-          $http.get('/debug/'+tag+':'+info);
+  provider('imgFactory', function imgFactoryProvider() {
+    var imgChannel = {}, baseAddr, ctx = document.createElement('canvas').getContext('2d');
+    this.mobileRoute = function (isMobile) {
+      if (isMobile)baseAddr = 'mobile\\resources\\';
+      else baseAddr = 'resources\\'
+    };
+    this.$get = ['$q', '$http', 'glFactory', function imgFactory($q, $http, glFactory) {
+      var maxImgSize = glFactory.MAX_TEXTURE_SIZE;
+      if (console.postInfo)
+        console.postInfo = function (tag, info) {
+          $http.get('/debug/' + tag + ':' + info);
         };
-        function checkSize(img){
-          var oriH=img.naturalHeight,oriWidth=img.naturalWidth,width,height,cvs;
-          if(oriH>maxImgSize||oriWidth>maxImgSize){
-            if(oriH>oriWidth){
-              height=maxImgSize;
-              width=parseInt(maxImgSize/oriH*oriWidth);
+      return {
+        get: function (src) {
+          if (typeof src == "string") return getImg(src);
+          else if (src.map)return $q.all(src.map(function (s) {
+            return getImg(s);
+          }));
+        },
+        setImgSize: function (v) {
+          if (isNaN(v))return;
+          maxImgSize = parseInt(maxImgSize, 10);
+        }
+      };
+      function checkSize(img) {
+        var oriH = img.naturalHeight, oriWidth = img.naturalWidth, width, height, cvs;
+        if (oriH > maxImgSize || oriWidth > maxImgSize) {
+          cvs = ctx.canvas;
+          cvs.height = cvs.width = maxImgSize;
+          ctx.clearRect(0, 0, maxImgSize, maxImgSize);
+          ctx.drawImage(img, 0, 0, oriWidth, oriH, 0, 0, maxImgSize, maxImgSize);
+          var nimg = new Image(), defer = $q.defer();
+          nimg.src = cvs.toDataURL('image/png');
+          nimg.onload = nimg.onerror = function () {
+            if (nimg.complete) {
+              console.log('change img size:' + nimg.naturalWidth + '/' + nimg.naturalHeight);
+              defer.resolve(nimg);
             }
-            else {
-              width=maxImgSize;
-              height=parseInt(maxImgSize/oriWidth*oriH);
-            }
-          }
-          else {
-            console.log('imgSize:'+oriWidth+'/'+oriH);
-            return img;
-          }
-          cvs=ctx.canvas;
-          cvs.height=height;
-          cvs.width=width;
-          ctx.clearRect(0,0,width,height);
-          ctx.drawImage(img,0,0,oriWidth,oriWidth,0,0,width,height);
-          var nimg=new Image();
-          nimg.src=cvs.toDataURL('image/png');
-          console.log('change img size:'+nimg.naturalWidth+'/'+nimg.naturalHeight);
-          return nimg;
+            else defer.resolve(nimg);
+          };
+          return defer.promise;
         }
-        function imgPromise(src){
-          var d=$q.defer(),img=new Image();
-          img.onload=function(){imgChannel[src]=checkSize(img); d.resolve(img)};
-          img.onerror=function(e){imgChannel[src]=new Error(e);d.reject(e)};
-          img.src=baseAddr+src;
-          console.log('begin load img:'+src);
-          return d.promise;
-        }
-        function getImg(src){
-          var imgLike=imgChannel[src];
-          if(!imgLike) return imgChannel[src]=imgPromise(src);
-          else if(imgLike instanceof Image) return $q(function(r){r(imgLike);});
-          else if(imgLike instanceof Error) return $q.reject(imgLike);
-          return imgLike;
-        }
-        return {
-          $get:function(src){
-            if(typeof src=="string") return getImg(src);
-            else if(src.map)return $q.all(src.map(function(s){return getImg(s);}));
-          },
-          setImgSize:function(v){
-            if(isNaN(v))return;
-             maxImgSize=parseInt(maxImgSize,10);
-          }
-        }
-      }]).
-  factory('cfgFactory',['cfgParser',function(cfg){
+        return img;
+      }
+
+      function imgPromise(src) {
+        var d = $q.defer(), img = new Image();
+        img.onload = function () {
+          d.resolve(imgChannel[src] = checkSize(img))
+        };
+        img.onerror = function (e) {
+          imgChannel[src] = new Error(e);
+          d.reject(e)
+        };
+        img.src = baseAddr + src;
+        console.log('begin load img:' + src);
+        return d.promise;
+      }
+
+      function getImg(src) {
+        var imgLike = imgChannel[src];
+        if (!imgLike) return imgChannel[src] = imgPromise(src);
+        else if (imgLike instanceof Image) return $q(function (r) {
+          r(imgLike);
+        });
+        else if (imgLike instanceof Error) return $q.reject(imgLike);
+        return imgLike;
+      }
+
+    }]
+  }).
+  factory('cfgFactory', ['cfgParser', function (cfg) {
     return cfg;
   }]);
 

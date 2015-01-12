@@ -1,37 +1,70 @@
-.menu($background:$lightGray;$hoverBack:$skyBlue;$textColor:white){
-  @include $boxUp ->lib($width:100%;$background:$background;$minHeight:0);
+.menu
+
+(
+$background: $lightGray;
+$hoverBack: $skyBlue;
+$textColor: white)
+{
+@include
+$boxUp
+-
+>
+lib
+(
+$width
+:
+100
+%
+;
+  $background: $background;
+  $minHeight: 0)
+;
   max-height: 400px;
   min-width: 62px;
   background: $background;
-  margin:5px auto;
+  margin: 5px auto;
   width: 90%;
-  float:left;
+  float: left;
   cursor: pointer;
-  >p,>div($itemHeight:32px){
-    background: $background;
-    position: relative;
-    display: block;
-    top:-$itemHeight+10px;
-    height: $itemHeight;
-    margin:0 auto;
-    padding-top: 7px;
-    color: $deepGray;
+>
+p
+,
+>
+div
+(
+$itemHeight
+:
+32
+px
+)
+{
+  background: $background;
+  position: relative;
+  display: block;
+  top: -$itemHeight+10px;
+  height: $itemHeight;
+  margin: 0 auto;
+  padding-top: 7px;
+  color: $deepGray;
 
-    &:hover{
-      background: $hoverBack;
-      color: white;
-    }
+&:hover {
+  background: $hoverBack;
+  color: white;
+}
+
+}
+> div {
+  &:hover::before {
+    background: $hoverBack;
+    border-color: $textColor;
   }
-  >div{
-    &:hover::before{
-      background:$hoverBack;
-      border-color: $textColor;
-    }
-    &::before{
-      display: inline-block;
-      content: '';
-      margin-right:5px;
-      @include $ring->lib($innerColor:$lightGray;$outerColor:$deepGray);
-    }
+  &::before {
+    display: inline-block;
+    content: '';
+    margin-right: 5px;
+    @include $ring- > lib($innerColor:$lightGray;
+    $outerColor: $deepGray);
   }
+}
+
 }

@@ -2,3 +2,6 @@ node_modules
 bowser_components
 .idea/*
 .git/*
+gruntfile.js
+public/mobile
+public/resources
